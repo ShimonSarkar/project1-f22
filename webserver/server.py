@@ -114,12 +114,13 @@ def home():
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     email = request.form['email']
-    cmd = 'SELECT email FROM Users WHERE email = (:email1)';
-    g.conn.execute(text(cmd), email1 = email);
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+    password = request.form['password']
+    cmd = 'SELECT password FROM Users WHERE email = (:email1)';
+    cursor = g.conn.execute(text(cmd), email1 = email);
+    if len(cursor) > 0 and request.form['password'] == cursor[0][0]:
         session['logged_in'] = True
     else:
-        flash('wrong password!')
+        flash('Invalid login credentials!')
     return home()
 
 

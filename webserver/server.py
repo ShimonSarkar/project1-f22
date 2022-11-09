@@ -117,7 +117,8 @@ def do_admin_login():
     password = request.form['password']
     cmd = 'SELECT password FROM Users WHERE email = (:email1)';
     cursor = g.conn.execute(text(cmd), email1 = email);
-    if len(cursor) > 0 and request.form['password'] == cursor[0][0]:
+    passes = cursor.fetchall()
+    if len(passes) > 0 and request.form['password'] == passes.get(0)[0]:
         session['logged_in'] = True
     else:
         flash('Invalid login credentials!')

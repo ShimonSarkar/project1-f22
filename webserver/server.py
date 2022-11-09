@@ -118,6 +118,11 @@ def do_admin_login():
     cmd = 'SELECT password FROM Users WHERE email = (:email1)';
     cursor = g.conn.execute(text(cmd), email1 = email);
     passes = cursor.fetchall()
+    print(passes)
+    print(email)
+    print(password)
+    print(len(passes))
+    print(passes[0][0])
     if len(passes) > 0 and request.form['password'] == passes[0][0]:
         session['logged_in'] = True
     else:

@@ -128,6 +128,15 @@ def logout():
     session['logged_in'] = False
     return home()
 
+@app.route('/newaccount', methods=['POST'])
+def create_new_account():
+    #####EDIT
+    name = request.form['name']
+    print(name)
+    cmd = 'INSERT INTO test(name) VALUES (:name1)';
+    g.conn.execute(text(cmd), name1 = name);
+    return redirect('/')
+
 ##############################
 
 

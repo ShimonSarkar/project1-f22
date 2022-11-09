@@ -123,8 +123,9 @@ def do_admin_login():
     print(password)
     print(len(passes))
     print(passes[0][0])
-    if len(passes) > 0 and request.form['password'] == passes[0][0]:
-        session['logged_in'] = True
+    if len(passes) > 0: 
+        if request.form['password'] == passes[0][0]:
+            session['logged_in'] = True
     else:
         flash('Invalid login credentials!')
     return home()

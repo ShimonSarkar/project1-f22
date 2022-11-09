@@ -18,7 +18,7 @@ Read about it online.
 import os
 from sqlalchemy import *
 from sqlalchemy.pool import NullPool
-from flask import Flask, request, render_template, g, redirect, Response
+from flask import Flask, request, render_template, g, redirect, Response, abort, session, flash
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
@@ -102,25 +102,33 @@ def teardown_request(exception):
 # see for decorators: http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/
 #
 
-
+######### LOG IN - LOG OUT ###########
 
 @app.route('/')
 def home():
-if not session.get('logged_in'):
-return render_template('login.html')
-else:
-return "Hello Boss!"
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        return "Hello Boss!"
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
-if request.form['password'] == 'password' and request.form['username'] == 'admin':
-session['logged_in'] = True
-else:
-flash('wrong password!')
-return home()
+    email = request.form['email']
+    cmd = 'SELECT email FROM Users WHERE email = (:email1)';
+    g.conn.execute(text(cmd), email1 = email);
+    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        session['logged_in'] = True
+    else:
+        flash('wrong password!')
+    return home()
 
 
+@app.route("/logout")
+def logout():
+    session['logged_in'] = False
+    return home()
 
+##############################
 
 
 @app.route('/index')

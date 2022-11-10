@@ -269,9 +269,7 @@ def add():
 
 def clear_null_entries(values):
     for i in range(len(values)):
-        print(values[i])
         if len(values[i]) == 0:
-            print(len(values[i]))
             values[i] = None
     return values
    

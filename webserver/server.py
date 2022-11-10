@@ -22,7 +22,6 @@ from flask import Flask, request, render_template, g, redirect, Response, abort,
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
-global user_email
 user_email = ""
 
 
@@ -118,7 +117,7 @@ def home():
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     email = request.form['email']
-    user_email = email
+    nonlocal user_email = email
     print(user_email)
     password = request.form['password']
     cmd = 'SELECT password FROM Users WHERE email = (:email1)';

@@ -141,7 +141,7 @@ def create_new_account():
             if len(request.form[key]) == 0:
                 print(len(request.form[key]))
                 print(request.form[key])
-                request.form[key] = NULL
+                request.form[key] = None
     try:
         email = request.form['email']
         fullname = request.form['fullname']

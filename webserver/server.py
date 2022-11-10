@@ -113,15 +113,13 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        context = dict(name = user_email)
+        context = dict(name = session['email'])
         return render_template("profile.html", **context)
     
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     email = request.form['email']
-    global user_email = email
-    print(user_email)
     password = request.form['password']
     cmd = 'SELECT password FROM Users WHERE email = (:email1)';
     cursor = g.conn.execute(text(cmd), email1 = email);

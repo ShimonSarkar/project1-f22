@@ -153,7 +153,7 @@ def create_new_account():
         c = g.conn.execute(text(cmd), email1 = email, fullname1 = fullname, uni1 = uni, password1 = password, venmo1 = venmo, cashapp1 = cashapp, image1 = image);
         c.close()
     except:
-        flash('Error making account! Ensure all fields are entered correctly.')
+        flash('Error creating account! Ensure all fields are entered correctly.')
         return redirect('/newaccount')
     return home()
 

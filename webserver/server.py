@@ -146,17 +146,18 @@ def create_new_account():
     values.append(request.form['cashapp'])
     values.append(request.form['image'])
     values = clear_null_entries(values)
-    #try:
-    cmd = 'INSERT INTO Users VALUES (:email1, :password1, :fullname1, :uni1, :venmo1, :cashapp1, :image1)';
-    c = g.conn.execute(text(cmd), email1 = values[0], password1 = values[3], fullname1 = values[1], 
-                       uni1 = values[2], venmo1 = values[4], cashapp1 = values[5], image1 = values[6]);
-    c.close()
-    session['logged_in'] = True
-    session['email'] = email
-    return redirect('/')
-    #except:
-        #flash('Error creating account! Ensure all fields are entered correctly.')
-        #return redirect('/newaccount')
+    try:
+        cmd = 'INSERT INTO Users VALUES (:email1, :password1, :fullname1, :uni1, :venmo1, :cashapp1, :image1)';
+        c = g.conn.execute(text(cmd), email1 = values[0], password1 = values[3], fullname1 = values[1], 
+                           uni1 = values[2], venmo1 = values[4], cashapp1 = values[5], image1 = values[6]);
+        session['logged_in'] = True
+        session['email'] = values[0]
+        return redirect('/')
+    except:
+        flash('Error creating account! Ensure all fields are entered correctly.')
+        return redirect('/newaccount')
+    finally:
+        c.close()
 
 app.route('/openpost', method = ['GET'])
 def openpost():

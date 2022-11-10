@@ -120,10 +120,9 @@ def do_admin_login():
     cmd = 'SELECT password FROM Users WHERE email = (:email1)';
     cursor = g.conn.execute(text(cmd), email1 = email);
     passes = cursor.fetchall()
-    if len(passes) > 0: 
-        if request.form['password'] == passes[0][0]:
-            session['logged_in'] = True
-            session['email'] = email
+    if len(passes) > 0 and request.form['password'] == passes[0][0]:
+        session['logged_in'] = True
+        session['email'] = email
     else:
         flash('Invalid login credentials!')
     return home()

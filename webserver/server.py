@@ -126,6 +126,10 @@ def do_admin_login():
     if len(passes) > 0: 
         if request.form['password'] == passes[0][0]:
             session['logged_in'] = True
+            context = dict(name = user_email)
+            print(context)
+            print(user_email)
+            return render_template("profile.html", **context)
     else:
         flash('Invalid login credentials!')
     return home()

@@ -113,7 +113,7 @@ def home():
         return render_template("profile.html", **context)
     
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def do_admin_login():
     email = request.form['email']
     password = request.form['password']
@@ -138,7 +138,7 @@ def logout():
 def new_account():
     return render_template('newaccount.html')
 
-@app.route('/createnewaccount')
+@app.route('/createnewaccount', methods=['POST'])
 def create_new_account():
     try:
         email = request.form['email']

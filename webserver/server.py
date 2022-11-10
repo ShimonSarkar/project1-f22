@@ -19,10 +19,13 @@ import os
 from sqlalchemy import *
 from sqlalchemy.pool import NullPool
 from flask import Flask, request, render_template, g, redirect, Response, abort, session, flash
+from flask_login import LoginManager
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
-user_email = ""
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 
 # XXX: The Database URI should be in the format of: 
@@ -102,6 +105,7 @@ def teardown_request(exception):
 # see for decorators: http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/
 #
 
+
 ######### LOG IN - LOG OUT ###########
 
 @app.route('/')
@@ -110,9 +114,8 @@ def home():
         return render_template('login.html')
     else:
         context = dict(name = user_email)
-        print(context)
-        print(user_email)
         return render_template("profile.html", **context)
+    
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
@@ -126,6 +129,7 @@ def do_admin_login():
     if len(passes) > 0: 
         if request.form['password'] == passes[0][0]:
             session['logged_in'] = True
+            session['email'] = email
     else:
         flash('Invalid login credentials!')
     return home()

@@ -126,7 +126,7 @@ def do_admin_login():
             session['email'] = email
     else:
         flash('Invalid login credentials!')
-    return home()
+    return redirect('/')
 
 
 @app.route("/logout")
@@ -244,12 +244,6 @@ def add():
   cmd = 'INSERT INTO test(name) VALUES (:name1)';
   g.conn.execute(text(cmd), name1 = name);
   return redirect('/')
-
-
-@app.route('/login')
-def login():
-    abort(401)
-    this_is_never_executed()
 
 
 if __name__ == "__main__":

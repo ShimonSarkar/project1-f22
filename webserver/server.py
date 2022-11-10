@@ -109,7 +109,7 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        context = dict(name = user_name)
+        context = dict(name = user_email)
         return render_template("profile.html", **context)
 
 @app.route('/login', methods=['POST'])

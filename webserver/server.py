@@ -113,7 +113,7 @@ def home():
         return render_template("profile.html", **context)
     
 
-@app.route('/login', methods=['POST'])
+@app.route('/login')
 def do_admin_login():
     email = request.form['email']
     password = request.form['password']
@@ -138,7 +138,7 @@ def logout():
 def new_account():
     return render_template('newaccount.html')
 
-@app.route('/createnewaccount', methods=['POST'])
+@app.route('/createnewaccount')
 def create_new_account():
     try:
         email = request.form['email']
@@ -148,7 +148,7 @@ def create_new_account():
         venmo = request.form['venmo']
         cashapp = request.form['cashapp']
         image = request.form['image']
-        cmd = 'INSERT INTO Users VALUES (:email1, :fullname1, :uni1, :password1, :venmo1, :cashapp1, :image1)';
+        cmd = 'INSERT INTO Users VALUES (:email1, :password1, :fullname1, :uni1, :venmo1, :cashapp1, :image1)';
         c = g.conn.execute(text(cmd), email1 = email, password1 = password, fullname1 = fullname, 
                            uni1 = uni, venmo1 = venmo, cashapp1 = cashapp, image1 = image);
         c.close()

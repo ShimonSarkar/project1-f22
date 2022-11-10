@@ -60,7 +60,7 @@ box-shadow: none;
 
 .btn {
 border: 2px solid transparent;
-background: #FFF;
+background: #3498DB;
 color: #777;
 font-size: 16px;
 line-height: 25px;
@@ -92,18 +92,18 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #3498DB;
+  background-color: #ECF0F1;
     }
 li {
   float: left;
 }
 li a {
   display: block;
-  color: white;
+  color: #777;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 li a:hover {
-  background-color: #44A8EB;
+  background-color: #777;
 }

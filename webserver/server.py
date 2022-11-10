@@ -104,6 +104,7 @@ def teardown_request(exception):
 
 ######### LOG IN - LOG OUT ###########
 
+'''
 @app.route('/')
 def home():
     if not session.get('logged_in'):
@@ -111,7 +112,22 @@ def home():
     else:
         context = dict(name = session['email'])
         return render_template("posts.html", **context)
-    
+'''
+@app.route('/')
+def home():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        return redirect('/posts')
+        
+@app.route('/posts')
+def posts():
+    cmd = 'SELECT * FROM Products_Posted WHERE email != (:email1)';
+    cursor = g.conn.execute(text(cmd), email1 = session['email']);
+    posts = cursor.fetchall()
+    context = dict(posts=posts)
+    return render_template("posts.html", **context)
+
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     email = request.form['email']

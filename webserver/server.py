@@ -164,7 +164,7 @@ def create_new_account():
 @app.route('/myprofile')
 def myprofile():
     cmd = 'SELECT * FROM Users WHERE email = (:email1)';
-    c = g.conn.execute(text(cmd), email1 = session['email'];
+    c = g.conn.execute(text(cmd), email1 = session['email']);
     user_info = c
     c.close()
     context = dict(info = user_info)

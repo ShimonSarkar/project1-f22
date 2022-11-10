@@ -125,7 +125,7 @@ def do_admin_login():
         session['email'] = email
     else:
         flash('Invalid login credentials!')
-    return home()
+    return redirect('/')
 
 
 @app.route("/logout")

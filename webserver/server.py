@@ -152,12 +152,13 @@ def create_new_account():
                            uni1 = values[2], venmo1 = values[4], cashapp1 = values[5], image1 = values[6]);
         session['logged_in'] = True
         session['email'] = values[0]
+        c.close()
         return redirect('/')
     except:
         flash('Error creating account! Ensure all fields are entered correctly.')
-        return redirect('/newaccount')
-    finally:
         c.close()
+        return redirect('/newaccount')
+        
 
 app.route('/openpost', method = ['GET'])
 def openpost():

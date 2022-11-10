@@ -163,14 +163,7 @@ def openpost():
     cmd = 'SELECT * FROM Products_Posted WHERE product_id = (:pid1)';
     cursor = g.conn.execute(text(cmd), pid1 = pid);
     products = cursor.fetchall()
-    user_email = products[0][0],
-    product_id = products[0][0],
-    title text = products[0][0],
-    description = products[0][0],
-    posted_date date = products[0][0],
-    product_type = products[0][0],
-    image_url = products[0][0],
-    context = dict(user_email = products[0][0], product_id = products[0][1], title text = products[0][2], description = products[0][3], posted_date date = products[0][4], product_type = products[0][5], image_url = products[0][6], tutoring_hourly_rate = products[0][7], tutoring_schedule text = products[0][8], study_resource_price = products[0][9], study_resource_download_url = products[0][10])
+    context = dict(user_email = products[0][0], product_id = products[0][1], title = products[0][2], description = products[0][3], posted_date = products[0][4], product_type = products[0][5], image_url = products[0][6], tutoring_hourly_rate = products[0][7], tutoring_schedule = products[0][8], study_resource_price = products[0][9], study_resource_download_url = products[0][10])
     return render_template("post.html", **context)
 
 ##############################

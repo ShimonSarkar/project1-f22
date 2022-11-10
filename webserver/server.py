@@ -117,8 +117,7 @@ def home():
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     email = request.form['email']
-    nonlocal user_email
-    user_email = email
+    global user_email = email
     print(user_email)
     password = request.form['password']
     cmd = 'SELECT password FROM Users WHERE email = (:email1)';

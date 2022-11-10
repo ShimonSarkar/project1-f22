@@ -128,7 +128,7 @@ def do_admin_login():
     return redirect('/')
 
 
-@app.route("/logout")
+@app.route('/logout')
 def logout():
     session['logged_in'] = False
     return redirect('/')

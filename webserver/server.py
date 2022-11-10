@@ -137,22 +137,23 @@ def new_account():
 
 @app.route('/createnewaccount', methods=['POST'])
 def create_new_account():
-    for key in request.form:
-            if len(request.form[key]) == 0:
-                print(len(request.form[key]))
-                print(request.form[key])
-                request.form[key] = None
     try:
-        email = request.form['email']
-        fullname = request.form['fullname']
-        uni = request.form['uni']
-        password = request.form['password']
-        venmo = request.form['venmo']
-        cashapp = request.form['cashapp']
-        image = request.form['image']
+        values = []
+        values[0] = request.form['email']
+        values[2] = request.form['fullname']
+        values[3] = request.form['uni']
+        values[1] = request.form['password']
+        values[4] = request.form['venmo']
+        values[5] = request.form['cashapp']
+        values[6] = request.form['image']
+        for v in values:
+            print(v)
+            if len(v) == 0:
+                print(v)
+                v = None
         cmd = 'INSERT INTO Users VALUES (:email1, :password1, :fullname1, :uni1, :venmo1, :cashapp1, :image1)';
-        c = g.conn.execute(text(cmd), email1 = email, password1 = password, fullname1 = fullname, 
-                           uni1 = uni, venmo1 = venmo, cashapp1 = cashapp, image1 = image);
+        c = g.conn.execute(text(cmd), email1 = values[0], password1 = values[1], fullname1 = values[2], 
+                           uni1 = values[3], venmo1 = values[4], cashapp1 = values[5], image1 = values[6]);
         c.close()
         session['logged_in'] = True
         session['email'] = email

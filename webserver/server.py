@@ -107,10 +107,10 @@ def teardown_request(exception):
 @app.route('/')
 def home():
     if not session.get('logged_in'):
-        context = dict(name = user_name)
-        return render_template("login.html", **context)
+        return render_template('login.html')
     else:
-        return "Hello Boss!"
+        context = dict(name = user_name)
+        return render_template("profile.html", **context)
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
@@ -123,7 +123,6 @@ def do_admin_login():
     if len(passes) > 0: 
         if request.form['password'] == passes[0][0]:
             session['logged_in'] = True
-            
     else:
         flash('Invalid login credentials!')
     return home()

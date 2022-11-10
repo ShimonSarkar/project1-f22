@@ -139,12 +139,12 @@ def new_account():
 def create_new_account():
     values = []
     values.append(request.form['email'])
-    values.append(request.form['fullname']
-    values.append(request.form['uni']
-    values.append(request.form['password']
-    values.append(request.form['venmo']
-    values.append(request.form['cashapp']
-    values.append(request.form['image']
+    values.append(request.form['fullname'])
+    values.append(request.form['uni'])
+    values.append(request.form['password'])
+    values.append(request.form['venmo'])
+    values.append(request.form['cashapp'])
+    values.append(request.form['image'])
     for i in len(values):
         print(values[i])
         if len(values[i]) == 0:

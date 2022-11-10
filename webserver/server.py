@@ -19,13 +19,9 @@ import os
 from sqlalchemy import *
 from sqlalchemy.pool import NullPool
 from flask import Flask, request, render_template, g, redirect, Response, abort, session, flash
-from flask_login import LoginManager
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
-
-login_manager = LoginManager()
-login_manager.init_app(app)
 
 
 # XXX: The Database URI should be in the format of: 

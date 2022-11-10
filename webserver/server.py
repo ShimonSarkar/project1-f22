@@ -140,6 +140,7 @@ def create_new_account():
     try:
         for key in request.form:
             if len(get(key)) == 0:
+                key = NULL
                 print(get(key))
         email = request.form['email']
         fullname = request.form['fullname']

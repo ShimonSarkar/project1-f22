@@ -110,7 +110,6 @@ def home():
         return render_template('login.html')
     else:
         context = dict(name = user_email)
-        print(name)
         print(context)
         print(user_email)
         return render_template("profile.html", **context)

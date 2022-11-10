@@ -156,7 +156,6 @@ def create_new_account():
         return redirect('/')
     except:
         flash('Error creating account! Ensure all fields are entered correctly.')
-        c.close()
         return redirect('/newaccount')
         
 

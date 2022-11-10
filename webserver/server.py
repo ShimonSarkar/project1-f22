@@ -110,7 +110,7 @@ def home():
         return render_template('login.html')
     else:
         context = dict(name = session['email'])
-        return render_template("profile.html", **context)
+        return render_template("posts.html", **context)
     
 
 @app.route('/login', methods=['POST'])
@@ -166,7 +166,7 @@ def myprofile():
     cmd = 'SELECT * FROM Users WHERE email = (:email1)';
     print(cmd)
     c = g.conn.execute(text(cmd), email1 = session['email']);
-    user_info = c
+    user_info = c.fetchall()
     print(user_info)
     c.close()
     context = dict(info = user_info)

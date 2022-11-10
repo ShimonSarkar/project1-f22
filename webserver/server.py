@@ -167,7 +167,6 @@ def myprofile():
     print(cmd)
     c = g.conn.execute(text(cmd), email1 = session['email']);
     user_info = c.fetchall()
-    print(user_info)
     c.close()
     context = dict(info = user_info)
     return render_template("profile.html", **context)

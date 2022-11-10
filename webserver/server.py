@@ -118,6 +118,7 @@ def home():
 def do_admin_login():
     email = request.form['email']
     user_email = email
+    print(user_email)
     password = request.form['password']
     cmd = 'SELECT password FROM Users WHERE email = (:email1)';
     cursor = g.conn.execute(text(cmd), email1 = email);

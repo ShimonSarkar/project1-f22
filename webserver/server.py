@@ -138,6 +138,9 @@ def new_account():
 @app.route('/createnewaccount', methods=['POST'])
 def create_new_account():
     try:
+        for key in request.form:
+            if len(get(key)) == 0:
+                get(key) = NULL
         email = request.form['email']
         fullname = request.form['fullname']
         uni = request.form['uni']

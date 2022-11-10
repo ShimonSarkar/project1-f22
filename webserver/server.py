@@ -137,6 +137,7 @@ def logout():
 
 @app.route('/newaccount', methods=['POST'])
 def create_new_account():
+    """
     try:
         email = request.form['email']
         fullname = request.form['fullname']
@@ -151,6 +152,7 @@ def create_new_account():
     except:
         flash('Error making account! Ensure all fields are entered correctly.')
         return redirect('/newaccount')
+        """
     return('/')
 
 ##############################

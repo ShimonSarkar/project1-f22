@@ -145,11 +145,7 @@ def create_new_account():
     values.append(request.form['venmo'])
     values.append(request.form['cashapp'])
     values.append(request.form['image'])
-    for i in range(len(values)):
-        print(values[i])
-        if len(values[i]) == 0:
-            print(values[i])
-            values[i] = None
+    values = clear_null_entries(values)
     try:
         cmd = 'INSERT INTO Users VALUES (:email1, :password1, :fullname1, :uni1, :venmo1, :cashapp1, :image1)';
         c = g.conn.execute(text(cmd), email1 = values[0], password1 = values[3], fullname1 = values[1], 
@@ -269,6 +265,19 @@ def add():
   return redirect('/')
 
 
+
+def clear_null_entries(values):
+    for i in range(len(values)):
+        print(values[i])
+        if len(values[i]) == 0:
+            print(values[i])
+            values[i] = None
+    return values
+   
+
+
+
+
 if __name__ == "__main__":
   import click
 
@@ -297,3 +306,5 @@ if __name__ == "__main__":
 
 
   run()
+
+

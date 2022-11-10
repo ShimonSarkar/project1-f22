@@ -25,6 +25,12 @@ text-align: center;
 color: #777;
 }
 
+.app-subtitle {
+text-align: center;
+font-size: 16px;
+color: #444;
+}
+
 .login-form {
 text-align: center;
 }

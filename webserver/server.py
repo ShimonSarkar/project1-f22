@@ -135,7 +135,7 @@ def logout():
     return home()
 
 
-@app.route('/newaccount', methods=['POST'])
+@app.route('/newaccount')
 def create_new_account():
     """
     try:

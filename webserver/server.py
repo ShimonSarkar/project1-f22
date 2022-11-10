@@ -145,7 +145,7 @@ def create_new_account():
     values.append(request.form['venmo'])
     values.append(request.form['cashapp'])
     values.append(request.form['image'])
-    for i in len(values):
+    for i in range(len(values)):
         print(values[i])
         if len(values[i]) == 0:
             print(values[i])

@@ -112,7 +112,6 @@ def home():
         context = dict(name = session['email'])
         return render_template("posts.html", **context)
     
-
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     email = request.form['email']
@@ -127,12 +126,10 @@ def do_admin_login():
         flash('Invalid login credentials!')
     return redirect('/')
 
-
 @app.route('/logout')
 def logout():
     session['logged_in'] = False
     return redirect('/')
-
 
 @app.route('/newaccount')
 def new_account():
@@ -159,6 +156,23 @@ def create_new_account():
         flash('Error creating account! Ensure all fields are entered correctly.')
         return redirect('/newaccount')
 
+app.route('/openpost', method = ['GET'])
+def openpost():
+    args = request.args
+    pid = args.get("pid")
+    cmd = 'SELECT * FROM Products_Posted WHERE product_id = (:pid1)';
+    cursor = g.conn.execute(text(cmd), pid1 = pid);
+    products = cursor.fetchall()
+    user_email = products[0][0],
+    product_id = products[0][0],
+    title text = products[0][0],
+    description = products[0][0],
+    posted_date date = products[0][0],
+    product_type = products[0][0],
+    image_url = products[0][0],
+    context = dict(user_email = products[0][0], product_id = products[0][1], title text = products[0][2], description = products[0][3], posted_date date = products[0][4], product_type = products[0][5], image_url = products[0][6], tutoring_hourly_rate = products[0][7], tutoring_schedule text = products[0][8], study_resource_price = products[0][9], study_resource_download_url = products[0][10])
+    return render_template("post.html", **context)
+
 ##############################
 
 @app.route('/myprofile')
@@ -170,7 +184,6 @@ def myprofile():
     c.close()
     context = dict(info = user_info)
     return render_template("profile.html", **context)
-
 
 ###############################
 

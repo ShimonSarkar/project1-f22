@@ -22,7 +22,7 @@ from flask import Flask, request, render_template, g, redirect, Response, abort,
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
-user_email = ""
+global user_email = ""
 
 
 # XXX: The Database URI should be in the format of: 
@@ -126,10 +126,6 @@ def do_admin_login():
     if len(passes) > 0: 
         if request.form['password'] == passes[0][0]:
             session['logged_in'] = True
-            context = dict(name = user_email)
-            print(context)
-            print(user_email)
-            return render_template("profile.html", **context)
     else:
         flash('Invalid login credentials!')
     return home()

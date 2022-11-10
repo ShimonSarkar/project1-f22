@@ -149,7 +149,7 @@ def create_new_account():
     venmo = request.form['venmo']
     cashapp = request.form['cashapp']
     image = request.form['image']
-    cmd = 'INSERT INTO Users VALUES (:email1), (:fullname1), (:uni1), (:password1), (:venmo1), (:cashapp1), (:image1)';
+    cmd = 'INSERT INTO Users VALUES (:email1, :fullname1, :uni1, :password1, :venmo1, :cashapp1, :image1)';
     c = g.conn.execute(text(cmd), email1 = email, fullname1 = fullname, uni1 = uni, password1 = password, venmo1 = venmo, cashapp1 = cashapp, image1 = image);
     c.close()
 #except:

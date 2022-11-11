@@ -293,7 +293,7 @@ def new_post():
     
 
 
-@app.route('/createnewpost', methods=['POST', 'GET'])
+@app.route('/createnewpost', methods=['POST'])
 def create_new_post():
     #Get all tags, classes, and products
     #try:
@@ -302,16 +302,19 @@ def create_new_post():
     c = g.conn.execute(text(cmd));
     tags = c.fetchall()
     c.close()
+    print("AHHH2")
 
     cmd = 'SELECT course_id, professor_id FROM Class_Sections';
     c = g.conn.execute(text(cmd));
     classes = c.fetchall()
     c.close()
+    print("AHHH3")
 
     cmd = 'SELECT max(product_id) FROM Products_Posted';
     c = g.conn.execute(text(cmd));
     max_prod = c.fetchall()
     c.close()
+    print("AHHH4")
 
     values = []
     values.append(request.form['title'])
@@ -322,6 +325,7 @@ def create_new_post():
     values.append(request.form['study_resource_price'])
     values.append(request.form['study_resource_download_url'])
     values = clear_null_entries(values)
+    print("AHHH5")
 
     my_tags = []
     my_classes = []
@@ -336,6 +340,7 @@ def create_new_post():
     tutstu = 2
     if request.form['tutoring'] != None and request.form['tutoring'] == "on":
         tutstu = 1
+    print("AHHH6")
 
     #Insert product
     cmd = 'INSERT INTO Users VALUES (:email1, :pid1, :title1, :desc1, :date1, :tut1, :image1, :thr1, :ts1, :srp1, :srd1)';

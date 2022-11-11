@@ -12,9 +12,9 @@
       height: 100px;
       border-radius: 20px;
       background-color: white;
-      padding: 1.5em;
-      box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
-      margin: 50px;
+      padding: 5px;
+      box-shadow: 0px 0px 5px -3px rgba(0, 0, 0, 0.5);
+      margin: 5px;
       transition: transform .25s;
   }
 
@@ -64,7 +64,7 @@
         <p>cashapp: {{info[0][5]}}</p>
         </div>
       
-          <h1 style"font-size:14px">Followers</h1>
+          <h1 style="font-size:14px;text-align:center;">Followers</h1>
           {% for follower in followers %}
             <div class="follbox">
           <a href="profile?uid={{follower[0]}}">
@@ -75,7 +75,7 @@
           </div>
           {% endfor %}
             
-          <h1 style"font-size:14px">Following</h1>
+          <h1 style="font-size:14px;text-align:center;">Following</h1>
           {% for following in followings %}
             <div class="follbox">
           <a href="profile?uid={{following[0]}}">

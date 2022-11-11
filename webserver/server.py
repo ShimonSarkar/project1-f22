@@ -209,7 +209,7 @@ def profile():
     followers = cursor.fetchall()
     cursor.close()
     
-    cmd = 'SELECT follower_email FROM Followers WHERE follower_email = (:uid1)';
+    cmd = 'SELECT user_email FROM Followers WHERE follower_email = (:uid1)';
     cursor = g.conn.execute(text(cmd), uid1 = uid);
     followings = cursor.fetchall()
     cursor.close()

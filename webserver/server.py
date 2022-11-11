@@ -293,7 +293,7 @@ def new_post():
     
 
 
-@app.route('/createnewpost')
+@app.route('/createnewpost', methods=['POST'])
 def create_new_post():
     #Get all tags, classes, and products
     #try:

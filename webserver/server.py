@@ -377,7 +377,7 @@ def create_new_review():
     values.append(request.form['rating'])
     values = clear_null_entries(values)
     #try:
-    cmd = 'SELECT max(product_id) FROM Products_Posted';
+    cmd = 'SELECT max(review_id) FROM Reviews';
     c = g.conn.execute(text(cmd));
     max_id = c.fetchall()
     rid = max_id[0][0]+1

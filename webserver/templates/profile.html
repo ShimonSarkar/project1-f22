@@ -50,7 +50,7 @@
         <div class="app-title">
         <h1>{{info[0][2]}}</h1>
         </div>
-      {% if info[0][0] == user_id %}
+      {% if info[0][0] != user_id %}
       {% if flw == 0 %}
       <a href="/follow?uid={{info[0][0]}}"> 
         <button type="button">follow</button>
@@ -58,7 +58,7 @@
       {% endif %}
       {% endif %}
       
-      {% if info[0][0] == user_id %}
+      {% if info[0][0] != user_id %}
       {% if flw == 1 %}
       <a href="/unfollow?uid={{info[0][0]}}"> 
         <button type="button">unfollow</button>
@@ -66,7 +66,7 @@
       {% endif %}
       {% endif %}
       
-      {% if info[0][0] == user_id %}
+      {% if info[0][0] != user_id %}
       <a href="/message?uid={{info[0][0]}}"> 
         <button type="button">message</button>
       </a>

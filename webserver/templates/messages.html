@@ -118,22 +118,26 @@
     <body onload="fixScroll()">
         <div id="everything_cont">
             <div class="message_cont">
+
+                {% for message in messages %}
+                {% if message[4] == useremail %}
                 <div class="cont">
-                    {% for message in messages %}
-                        {% if message[4] == useremail %}
-                            <div class="message usermessage">
-                                <h4>{{message[4]}}, {{message[2]}}, {{message[3]}}</h4>
-                                <p>{{message[1]}}</p>
-                            </div>
-                        {% endif %}
-                        {% if message[4] != useremail %}
-                            <div class="message receivermessage">
-                                <h4>{{message[4]}}, {{message[2]}}, {{message[3]}}</h4>
-                                <p>{{message[1]}}</p>
-                            </div>
-                        {% endif %}         
-                    {% endfor %}
+                    <div class="message usermessage">
+                        <h4>{{message[4]}}, {{message[2]}}, {{message[3]}}</h4>
+                        <p>{{message[1]}}</p>
+                    </div>
                 </div>
+                {% endif %}
+                {% if message[4] != useremail %}
+                <div class="cont">
+                    <div class="message receivermessage">
+                        <h4>{{message[4]}}, {{message[2]}}, {{message[3]}}</h4>
+                        <p>{{message[1]}}</p>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+
             </div>
 
             <form action="/createnewmessage?receiver={{receiveremail}}" , method="POST">

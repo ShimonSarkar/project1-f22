@@ -244,6 +244,7 @@ def profile():
 def follow():
     args = request.args
     uid = args.get("uid")
+    print(url_for('/profile', uid=uid))
     try:
         cmd = 'INSERT INTO Followers VALUES (:user1, :follower1)';
         c = g.conn.execute(text(cmd), user1 = uid, follower1 = session['email']);

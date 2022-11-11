@@ -363,6 +363,7 @@ def new_review():
     args = request.args
     uid = args.get("uid")
     context = dict(current_user = uid)
+    print(context)
     return render_template('newreview.html', **context)
 
 @app.route('/createnewreview', methods=['POST'])

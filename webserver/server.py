@@ -352,7 +352,7 @@ def create_new_post():
     #Insert tags
     for c2 in my_classes:
         cmd = 'INSERT INTO Product_Class_Relation VALUES (:pid1, :prof1, :cid1)';
-        c = g.conn.execute(text(cmd), pid1 = pid, prof1 = c2[3], cid1 = c2[0])
+        c = g.conn.execute(text(cmd), pid1 = pid, prof1 = c2[1], cid1 = c2[0])
         c.close()
     return redirect('/')
 #    except:

@@ -214,13 +214,13 @@ def profile():
     cmd = 'SELECT follower_email FROM Followers WHERE follower_email = (:uid1)';
     cursor = g.conn.execute(text(cmd), uid1 = uid);
     followings = cursor.fetchall()
-    context[followings = followings]
+    context[followings] = followings
     cursor.close()
     
     cmd = 'SELECT email FROM Users WHERE email = (:uid1)';
     cursor = g.conn.execute(text(cmd), uid1 = uid);
     followings = cursor.fetchall()
-    context[followings = followings]
+    context[followings] = followings
     cursor.close()
     
     return render_template("profile.html", **context)

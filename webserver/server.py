@@ -238,7 +238,7 @@ def profile():
 
 
 @app.route('/follow', methods=['GET'])
-def profile():
+def follow():
     args = request.args
     uid = args.get("uid")
     try:

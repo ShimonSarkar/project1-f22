@@ -14,8 +14,8 @@
       background-color: white;
       padding: 5px;
       box-shadow: 0px 0px 5px -3px rgba(0, 0, 0, 0.5);
-      margin: 5px;
       transition: transform .25s;
+      margin: auto;
   }
 
   .follbox:hover {
@@ -64,6 +64,8 @@
         <p>cashapp: {{info[0][5]}}</p>
         </div>
       
+      <break style="margin-top:20px;"></break>
+      
           <h1 style="font-size:14px;text-align:center;">Followers</h1>
           {% for follower in followers %}
             <div class="follbox">
@@ -74,6 +76,8 @@
               </a>
           </div>
           {% endfor %}
+      
+      <break style="margin-top:20px;"></break>
             
           <h1 style="font-size:14px;text-align:center;">Following</h1>
           {% for following in followings %}
@@ -85,6 +89,8 @@
               </a>
           </div>
           {% endfor %}
+      
+      <break style="margin-top:20px;"></break>
         
           
     </div>

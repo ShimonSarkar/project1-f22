@@ -309,7 +309,7 @@ def create_new_post():
 
     cmd = 'SELECT max(product_id) FROM Products_Posted';
     c = g.conn.execute(text(cmd));
-    max_prod = p.fetchall()
+    max_prod = c.fetchall()
     c.close()
 
     values = []

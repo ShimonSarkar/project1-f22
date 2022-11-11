@@ -214,7 +214,7 @@ def openpost():
     followings = cursor.fetchall()
     context.append(followings = followings)
     cursor.close()
-    return render_template("post.html", **context)
+    return render_template("profile.html", **context)
 
 
 

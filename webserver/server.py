@@ -382,7 +382,7 @@ def create_new_review():
     rid = max_id[0][0]+1
     c.close()
 
-    cmd = 'INSERT INTO Users VALUES (:rid1, :title1, :desc1, :rating1, :er1, :ed1, :date1)';
+    cmd = 'INSERT INTO Reviews VALUES (:rid1, :title1, :desc1, :rating1, :er1, :ed1, :date1)';
     c = g.conn.execute(text(cmd), rid1 = rid, title1 = values[0], desc1 = values[1], 
                        rating1 = values[2], er1 = session['email'], ed1 = uid, date1 = date.today());
     c.close()

@@ -358,7 +358,7 @@ def create_new_post():
 ##################### REVIEWS #######
 
 
-app.route('/newreview')
+@app.route('/newreview')
 def new_review():
     return render_template('newreview.html')
 

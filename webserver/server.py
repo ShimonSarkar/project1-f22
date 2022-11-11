@@ -293,10 +293,11 @@ def new_post():
     
 
 
-@app.route('/createnewpost', methods=['POST', 'GET'])
+@app.route('/createnewpost')
 def create_new_post():
     #Get all tags, classes, and products
     #try:
+    print("AHHH1")
     cmd = 'SELECT tag_id FROM Tags';
     c = g.conn.execute(text(cmd));
     tags = c.fetchall()

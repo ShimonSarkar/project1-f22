@@ -126,6 +126,7 @@ def posts():
     cmd = 'SELECT * FROM Products_Posted'; #WHERE user_email != (:email1)';
     cursor = g.conn.execute(text(cmd), email1 = session['email']);
     posts = cursor.fetchall()
+    cursor.close()
     context = dict(posts=posts)
     return render_template("posts.html", **context)
 
@@ -224,10 +225,15 @@ def profile():
     cmd = 'SELECT * FROM Products_Posted WHERE user_email = (:email1)';
     cursor = g.conn.execute(text(cmd), email1 = uid);
     posts = cursor.fetchall()
-    
-    
-    context = dict(followers = followers, followings = followings, info = info, flw = flw, user_id = session['email'], posts=posts)
     cursor.close()
+    
+    cmd = 'SELECT * FROM Reviews WHERE reviewed_email = (:email1)';
+    cursor = g.conn.execute(text(cmd), email1 = uid);
+    reviews = cursor.fetchall()
+    cursor.close()
+    
+    context = dict(followers = followers, followings = followings, info = info, flw = flw, user_id = session['email'], posts=posts, reviews = reviews)
+    
     
     return render_template("profile.html", **context)
 

@@ -244,9 +244,26 @@ def message():
     cmd = 'SELECT * FROM Messages_Sent_Received WHERE sender_email = (:sender1) AND receiver_email = (:sender2) OR sender_email = (:sender2) AND receiver_email = (:sender1) ORDER BY date_created, time_created';
     c = g.conn.execute(text(cmd), sender1 = session['email'], sender2 = uid);
     messages = c.fetchall()
-    context = dict(useremail=session['email'], messages=messages)
+    context = dict(useremail=session['email'], messages=messages, receiveremail = uid)
     return render_template("messages.html", **context)
 
+@app.route('/createnewmessage', methods = ['POST'])
+def createnewmessage():
+    message_content = request.form['newmessage']
+    args = request.args
+    receiver = args.get(receiver)
+    cmd = 'SELECT max(product_id) FROM Products_Posted';
+    c = g.conn.execute(text(cmd));
+    max_prod = c.fetchall()
+    c.close()
+
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+        
+    cmd = 'INSERT INTO Messages_Sent_Received VALUES (:id, :content, :date_created, :time_created, :sender_email, :receiver_email, :referred_product)'
+    c = g.conn.execute(text(cmf), id = max_prod[0][0] + 1, content = message_content, date_created = date.today(), time_created = current_time, sender_email = session['email'], receiver_email = receiver, referred_product = None)
+    return redirect(url_for('.message', uid=receiver))
+    
 ############## FOLLOW BUTTON ######
 
 
@@ -275,7 +292,7 @@ def unfollow():
     except:
         return redirect(url_for('.profile', uid=uid))
 
-    
+
 ############ ADD POST #############
 
 

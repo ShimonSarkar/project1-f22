@@ -221,7 +221,12 @@ def profile():
     if len(flwer) > 0:
         flw = 1
     
-    context = dict(followers = followers, followings = followings, info = info, flw = flw, user_id = session['email'])
+    cmd = 'SELECT * FROM Products_Posted WHERE user_email = (:email1)';
+    cursor = g.conn.execute(text(cmd), email1 = uid);
+    posts = cursor.fetchall()
+    
+    
+    context = dict(followers = followers, followings = followings, info = info, flw = flw, user_id = session['email'], posts=posts)
     cursor.close()
     
     return render_template("profile.html", **context)

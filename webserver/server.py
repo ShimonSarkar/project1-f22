@@ -190,14 +190,43 @@ def openpost():
 @app.route('/myprofile')
 def myprofile():
     cmd = 'SELECT * FROM Users WHERE email = (:email1)';
-    print(cmd)
     c = g.conn.execute(text(cmd), email1 = session['email']);
     user_info = c.fetchall()
     c.close()
     context = dict(info = user_info)
-    return render_template("profile.html", **context)
+    return render_template("myprofile.html", **context)
 
-###############################
+
+########### PROFILE ############
+
+app.route('/profile', method = ['GET'])
+def openpost():
+    args = request.args
+    uid = args.get("uid")
+    cmd = 'SELECT follower_email FROM Followers WHERE user_email = (:uid1)';
+    cursor = g.conn.execute(text(cmd), uid1 = uid);
+    followers = cursor.fetchall()
+    context = dict(followers = followers)
+    cursor.close()
+    
+    cmd = 'SELECT follower_email FROM Followers WHERE follower_email = (:uid1)';
+    cursor = g.conn.execute(text(cmd), uid1 = uid);
+    followings = cursor.fetchall()
+    context.append(followings = followings)
+    cursor.close()
+    return render_template("post.html", **context)
+
+
+
+
+
+
+
+
+
+
+
+####################################
 
 @app.route('/index')
 def index():

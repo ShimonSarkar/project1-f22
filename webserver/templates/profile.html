@@ -1,6 +1,37 @@
 <link rel="stylesheet" href="/static/mainstyle.css" type="text/css">
 
 
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+  .follbox {
+      font-family: 'Rubik', sans-serif;
+      display: inline-block;
+      width: 250px;
+      height: 100px;
+      border-radius: 20px;
+      background-color: white;
+      padding: 1.5em;
+      box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
+      margin: 50px;
+      transition: transform .25s;
+  }
+
+  .follbox:hover {
+      transform: scale(1.05);
+      transition: transform .25s;
+  }
+
+</style>
+
+
+
+
+
+</head>
+
+
 <body>
   
   <ul style="position:relative; top:-70px">
@@ -33,7 +64,7 @@
         <p>cashapp: {{info[0][5]}}</p>
         </div>
       
-        <div>
+        <div class="follbox">
           <h1 style"font-size:14px">Followers</h1>
           {% for follower in followers %}
           <a href="openpost?uid={{follower[0]}}">
@@ -44,7 +75,7 @@
           {% endfor %}
         </div>
             
-        <div>
+        <div class="follbox">
           <h1 style"font-size:14px">Following</h1>
           {% for following in followings %}
           <a href="openpost?uid={{following[0]}}">

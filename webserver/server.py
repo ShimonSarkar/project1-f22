@@ -217,6 +217,7 @@ def profile():
     cmd = 'SELECT * FROM Users WHERE email = (:uid1)';
     cursor = g.conn.execute(text(cmd), uid1 = uid);
     info = cursor.fetchall()
+    print(info)
     cursor.close()
     
     cmd = 'SELECT * FROM Followers WHERE follower_email = (:uid1) and user_email = (:uid2)' ;

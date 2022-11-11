@@ -243,7 +243,7 @@ def profile():
     uid = args.get("uid")
     try:
         cmd = 'INSERT INTO Users VALUES (:user1, :follower1)';
-        c = g.conn.execute(text(cmd), user1 = uid, follower1 = session['email'];
+        c = g.conn.execute(text(cmd), user1 = uid, follower1 = session['email']);
         c.close()
         return redirect('/profile?' + uid)
 

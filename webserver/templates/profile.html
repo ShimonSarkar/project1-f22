@@ -224,10 +224,10 @@ p {
         {% for review in reviews %}
           <a href="profile?uid={{review[4]}}">
             <div class="review">
-                <h1 class="title" style="font-size:16px">{{review[2]}}</h1>
-                <h1 class="title" style="font-size:14px">Rating: {{review[3]}}/5</h1>
+                <h1 class="title" style="font-size:16px">{{review[1]}}</h1>
+                <h1 class="rating" style="font-size:14px">Rating: {{review[3]}}/5</h1>
                 <p class="date">{{review[6]}}<br></p>
-                <p>{{post[2]}}</p>
+                <p>{{review[2]}}</p>
             </div>
         </a>
         {% endfor %}

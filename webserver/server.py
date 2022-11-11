@@ -321,18 +321,13 @@ def create_new_post():
     values.append(request.form['study_resource_price'])
     values.append(request.form['study_resource_download_url'])
     values = clear_null_entries(values)
-
-    newdict = request.form.copy()
     
     my_tags = []
     my_classes = []
     print("AHHH1")
     for t in tags:
-        print("AHHHH3")
-        print(newdict["1"])
-        print(newdict[str(t[0])])
-        if newdict[str(t[0])] is not None and newdict[str(t[0])] == "on":
-            my_tags.append(str(t[0]))
+        if (str(t[0])) in request.form:
+            my_tags.append(t[0])
     print("AHHH2")
     for c in classes:
         if request.form[str(c[0] + '-' + c[3])] is not None and request.form[str(c[0] + '-' + c[3])] == "on":

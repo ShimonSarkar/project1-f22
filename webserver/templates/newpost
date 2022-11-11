@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+
+
+
+
+<form action="/createnewpost" method="POST">
+<div class="login">
+<div class="login-screen">
+<div class="app-title">
+<h1>New Post</h1>
+</div>
+<div class="login-form">
+<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="post title" name="title"></div>
+
+<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="description" name="description"></div>
+
+<div class="control-group">
+  <input type="checkbox" id="tutoring" name="tutoring" value="">
+  <label for="tutoring"> Is this a tutoring session?</label><br>
+  </div>
+
+<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="image link" name="image"></div>
+
+<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="hourly rate (tutoring only)" name="tutoring_hourly_rate"></div>
+
+<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder=""schedule (non-tutoring only)"" name="tutoring_schedule"></div>
+        
+<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder=""price (non-tutoring only)"" name="study_resource_price"></div>
+        
+<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder=""schedule (non-tutoring only)"" name="study_resource_download_url"></div>
+
+<div class="app-subtitle">
+<h1>Add Tags</h1>
+</div>
+
+{% for tag in tags %}
+
+<div class="control-group">
+<input type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="">
+<label style="color:{{tag[2]}}" for="{{tag[0]}}"> {{tag[2]}}</label><br>
+</div>
+
+{% endfor %}
+
+
+
+{% for class in classes %} ###TO DO
+
+<div class="control-group">
+<input type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="">
+<label style="color:{{tag[2]}}" for="{{tag[0]}}"> {{tag[2]}}</label><br>
+</div>
+
+{% endfor %}
+
+
+
+
+
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <p class=flashes>
+    {% for message in messages %}
+      <p style="color:red">{{ message }}</p>
+    {% endfor %}
+    </p>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+	
+	
+<input type="submit" value="create" class="btn btn-primary btn-large btn-block">
+
+</div>
+</div>
+</div>
+</form>
+

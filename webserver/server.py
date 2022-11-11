@@ -201,7 +201,6 @@ def myprofile():
 
 @app.route('/profile', methods=['GET'])
 def profile():
-    render_template("profile.html")
     args = request.args
     uid = args.get("uid")
     

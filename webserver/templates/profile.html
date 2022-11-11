@@ -43,6 +43,47 @@
   .btn:hover {
   background-color: #2980B9;
   }
+  
+  .post {
+    font-family: 'Rubik', sans-serif;
+    display: inline-block;
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: white;
+    padding: 1.5em;
+    box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
+    margin: 50px;
+    transition: transform .25s;
+}
+
+.post:hover {
+    transform: scale(1.05);
+    transition: transform .25s;
+}
+
+.img_cont {
+    display: block;
+    padding-bottom: 10px;
+    height: 150px;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+p {
+    display: block;
+}
+
+.post .title {
+    font-weight: bold;
+    font-size: 14pt;
+    margin-top: 0px;
+}
 
 </style>
 
@@ -147,6 +188,22 @@
       
       
     <div class="column" style="width:800px;display:inline-block;vertical-align:top;">
+      <p style="margin:50px;"><br></p>
+      <div class="post_container">
+        <h1 style="font-size:18px;text-align:center;">Posts</h1>
+        {% for post in posts %}
+        <a href="openpost?pid={{post[1]}}">
+            <div class="post">
+                <p class="title">{{post[2]}}</p>
+                <div class="img_cont">
+                    <img src={{post[6]}}>
+                </div>
+                <p>{{post[4]}}</p>
+                <p>Unfinished!</p>
+            </div>
+            <a>
+        {% endfor %}
+    </div>
       
           
 

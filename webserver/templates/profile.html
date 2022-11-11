@@ -48,30 +48,30 @@
       
           
         <div class="app-title">
-        <h1>{{info[0]}}</h1>
+        <h1>{{info[0][2]}}</h1>
         </div>
       
       {% if flw == 0 %}
-      <form action="/follow?uid={{info[0]}}" method="POST">
+      <form action="/follow?uid={{info[0][0]}}" method="POST">
       <input type="follow" value="follow" class="btn btn-primary btn-large btn-block">
       </form>
       {% endif %}
       
-      <form action="/message?uid={{info[0]}}" method="POST">
+      <form action="/message?uid={{info[0][0]}}" method="POST">
       <input type="message" value="message" class="btn btn-primary btn-large btn-block">
       </form>
       
       
           
         <div class="app-title">
-        <img src={{info[6]}} width="350" height="350">
+        <img src={{info[0][6]}} width="350" height="350">
         </div>
           
         <div class="app-subtitle">
-        <p>email: {{info[0]}}</p>
-        <p>uni: {{info[3]}}</p>
-        <p>venmo: {{info[4]}}</p>
-        <p>cashapp: {{info[5]}}</p>
+        <p>email: {{info[0][0]}}</p>
+        <p>uni: {{info[0][3]}}</p>
+        <p>venmo: {{info[0][4]}}</p>
+        <p>cashapp: {{info[0][5]}}</p>
         </div>
       
       <p style="margin:20px;"><br></p>

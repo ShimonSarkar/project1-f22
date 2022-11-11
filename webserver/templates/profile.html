@@ -32,17 +32,34 @@
         <p>venmo: {{info[0][4]}}</p>
         <p>cashapp: {{info[0][5]}}</p>
         </div>
+      
+        <div>
+          <h1 style"font-size:14px">Followers</h1>
+          {% for follower in followers %}
+          <a href="openpost?uid={{follower[0]}}">
+              <div class="app-subtitle">
+                  <p>{{follower[0]}}</p>
+              </div>
+              <a>
+          {% endfor %}
+        </div>
+            
+        <div>
+          <h1 style"font-size:14px">Following</h1>
+          {% for following in followings %}
+          <a href="openpost?uid={{following[0]}}">
+              <div class="app-subtitle">
+                  <p>{{following[0]}}</p>
+              </div>
+              <a>
+          {% endfor %}
+        </div>
           
     </div>
       
       
     <div class="column" style="width:400px;display:inline-block;vertical-align:top;">
       
-          
-        <div class="app-title">
-        <h1>{{info[0][2]}} This is more content here!</h1>
-        </div>
-          
           
 
     </div>

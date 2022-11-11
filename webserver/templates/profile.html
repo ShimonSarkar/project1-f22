@@ -64,27 +64,28 @@
         <p>cashapp: {{info[0][5]}}</p>
         </div>
       
-        <div class="follbox">
           <h1 style"font-size:14px">Followers</h1>
           {% for follower in followers %}
-          <a href="profile?uid={{follower[0]}}">
+            <div class="follbox">
+          <a href="profile?uid={{following[0]}}">
               <div class="app-subtitle">
-                  <p>{{follower[0]}}</p>
+                  <p>{{followers[0]}}</p>
               </div>
-              <a>
+              </a>
+          </div>
           {% endfor %}
-        </div>
             
-        <div class="follbox">
           <h1 style"font-size:14px">Following</h1>
           {% for following in followings %}
+            <div class="follbox">
           <a href="profile?uid={{following[0]}}">
               <div class="app-subtitle">
                   <p>{{following[0]}}</p>
               </div>
-              <a>
+              </a>
+          </div>
           {% endfor %}
-        </div>
+        
           
     </div>
       

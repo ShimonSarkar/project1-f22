@@ -174,7 +174,6 @@ def create_new_account():
         flash('Error creating account! Ensure all fields are entered correctly.')
         return redirect('/newaccount')
         
-
 @app.route('/openpost', methods=['GET'])
 def openpost():
     args = request.args
@@ -235,7 +234,7 @@ def profile():
     
     return render_template("profile.html", **context)
 
-@app.route('/message', methods = 'GET')
+@app.route('/message', methods = ['GET'])
 def message():
     args = request.args
     uid = args.get("uid")

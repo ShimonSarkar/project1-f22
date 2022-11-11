@@ -294,7 +294,7 @@ def new_post():
 
 
 @app.route('/createnewpost', methods=['POST'])
-def create_new_account():
+def create_new_post():
     #Get all tags, classes, and products
     #try:
     cmd = 'SELECT tag_id FROM Tags';

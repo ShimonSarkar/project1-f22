@@ -222,9 +222,9 @@ def profile():
     
     cmd = 'SELECT * FROM Followers WHERE follower_email = (:uid1) and user_email = (:uid2)' ;
     cursor = g.conn.execute(text(cmd), uid1 = uid, uid2 = session['email']);
-    info = cursor.fetchall()
+    flwer = cursor.fetchall()
     flw = 0
-    if len(info) > 0:
+    if len(flwer) > 0:
         flw = 1
     
     context = dict(followers = followers, followings = followings, info = info, flw = flw)

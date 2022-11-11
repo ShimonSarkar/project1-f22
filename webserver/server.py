@@ -214,7 +214,7 @@ def profile():
     followings = cursor.fetchall()
     cursor.close()
     
-    cmd = 'SELECT email FROM Users WHERE email = (:uid1)';
+    cmd = 'SELECT * FROM Users WHERE email = (:uid1)';
     cursor = g.conn.execute(text(cmd), uid1 = uid);
     info = cursor.fetchall()
     context = dict(followers = followers, followings = followings, info = info)

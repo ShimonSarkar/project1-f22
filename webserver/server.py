@@ -328,9 +328,9 @@ def create_new_post():
     for t in tags:
         if (str(t[0])) in request.form:
             my_tags.append(t[0])
-    for c in classes:
-        if str(str(c[0]) + '-' + str(c[3])) in request.form:
-            my_classes.append(tuple(c[0], c[3]))
+    for p in classes:
+        if str(str(p[0]) + '-' + str(p[1])) in request.form:
+            my_classes.append(tuple(p[0], p[1]))
     pid = max_prod[0][0]+1
     tutstu = 2
     if 'tutoring' in request.form:

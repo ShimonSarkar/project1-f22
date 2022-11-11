@@ -246,6 +246,7 @@ def profile():
         c = g.conn.execute(text(cmd), user1 = uid, follower1 = session['email']);
         c.close()
         return redirect('/profile?' + uid)
+    return redirect('/profile?' + uid)
 
       
                            

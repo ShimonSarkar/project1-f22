@@ -51,18 +51,14 @@
 
 
 
-{% for class in classes %} ###TO DO
+{% for class in classes %}
 
 <div class="control-group">
-<input type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="">
-<label style="color:{{tag[2]}}" for="{{tag[0]}}"> {{tag[2]}}</label><br>
+<input type="checkbox" id="{{class[0]}}-{{class[3]}}" name="{{class[0]}}-{{class[3]}}" value="">
+<label for="{{class[0]}}-{{class[3]}}"> {{class[1]}} with {{class[5]}} </label><br>
 </div>
 
 {% endfor %}
-
-
-
-
 
 
 

@@ -329,7 +329,7 @@ def create_new_post():
         if (str(t[0])) in request.form:
             my_tags.append(t[0])
     for c in classes:
-        if request.form[str(c[0] + '-' + c[3])] in request.form[str(c[0] + '-' + c[3])]:
+        if str(str(c[0]) + '-' + str(c[3])) in request.form:
             my_classes.append(tuple(c[0], c[3]))
     pid = max_prod[0][0]+1
     tutstu = 2

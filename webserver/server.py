@@ -189,12 +189,7 @@ def openpost():
 
 @app.route('/myprofile')
 def myprofile():
-    cmd = 'SELECT * FROM Users WHERE email = (:email1)';
-    c = g.conn.execute(text(cmd), email1 = session['email']);
-    user_info = c.fetchall()
-    c.close()
-    context = dict(info = user_info)
-    return render_template("myprofile.html", **context)
+    return redirect(url_for('.profile', uid=session['email']))
 
 
 ########### PROFILE ############

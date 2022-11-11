@@ -220,7 +220,7 @@ def profile():
     cursor.close()
     
     cmd = 'SELECT * FROM Followers WHERE follower_email = (:uid1) and user_email = (:uid2)' ;
-    cursor = g.conn.execute(text(cmd), uid1 = uid, uid = session['email']);
+    cursor = g.conn.execute(text(cmd), uid1 = uid, uid2 = session['email']);
     info = cursor.fetchall()
     flw = 0
     if len(info) > 0:

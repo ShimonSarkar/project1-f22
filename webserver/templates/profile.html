@@ -52,18 +52,18 @@
         </div>
       
       {% if flw == 0 %}
-      <form action="/follow?uid={{info[0][0]}}" method="POST">
+      <form action="/follow?uid={{info[0][0]}}" method="GET">
       <input type="submit" value="follow" class="btn btn-primary btn-large btn-block">
       </form>
       {% endif %}
       
       {% if flw == 1 %}
-      <form action="/follow?uid={{info[0][0]}}" method="POST">
+      <form action="/follow?uid={{info[0][0]}}" method="GET">
       <input type="submit" value="unfollow" class="btn btn-primary btn-large btn-block">
       </form>
       {% endif %}
       
-      <form action="/message?uid={{info[0][0]}}" method="POST">
+      <form action="/message?uid={{info[0][0]}}" method="GET">
       <input type="submit" value="message" class="btn btn-primary btn-large btn-block">
       </form>
       

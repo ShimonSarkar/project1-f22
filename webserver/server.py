@@ -242,6 +242,7 @@ def profile():
 def follow():
     args = request.args
     uid = args.get("uid")
+    print("AHHH")
     try:
         cmd = 'INSERT INTO Users VALUES (:user1, :follower1)';
         c = g.conn.execute(text(cmd), user1 = uid, follower1 = session['email']);

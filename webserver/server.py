@@ -219,8 +219,8 @@ def profile():
     
     cmd = 'SELECT email FROM Users WHERE email = (:uid1)';
     cursor = g.conn.execute(text(cmd), uid1 = uid);
-    followings = cursor.fetchall()
-    context[followings] = followings
+    info = cursor.fetchall()
+    context[info] = info
     cursor.close()
     
     return render_template("profile.html", **context)

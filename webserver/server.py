@@ -244,14 +244,13 @@ def profile():
 def follow():
     args = request.args
     uid = args.get("uid")
-    print("AHHH")
     try:
         cmd = 'INSERT INTO Followers VALUES (:user1, :follower1)';
         c = g.conn.execute(text(cmd), user1 = uid, follower1 = session['email']);
         c.close()
-        return redirect('/')
+        return redirect(url_for('/profile?uid=' + uid))
     except:
-        return redirect('/')
+        return redirect(url_for('/profile?uid=' + uid))
     
 
 @app.route('/unfollow', methods=['GET'])

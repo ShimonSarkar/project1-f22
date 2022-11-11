@@ -66,12 +66,12 @@
 .review {
 font-family: 'Rubik', sans-serif;
 display: inline-block;
-width: 600px;
-height: 200px;
+width: 550px;
+height: auto;
 overflow: hidden;
 border-radius: 20px;
 background-color: white;
-padding: 1.5em;
+padding: 1em;
 box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
 margin: 10px;
 transition: transform .25s;
@@ -220,14 +220,15 @@ p {
           
       <p style="margin:10px;"><br></p>
       <h1 style="font-size:18px;text-align:center;">Reviews</h1>
-      <div class="post_container">
+      <div class="review_container">
         {% for review in reviews %}
           <a href="profile?uid={{review[4]}}">
             <div class="review">
-                <h1 class="title" style="font-size:16px">{{review[1]}}</h1>
-                <h1 class="rating" style="font-size:14px">Rating: {{review[3]}}/5</h1>
-                <p class="date">{{review[6]}}<br></p>
-                <p>{{review[2]}}</p>
+                <h1 class="title" style="font-size:20px;font-weight:bold;">{{review[1]}}</h1>
+                <h1 class="rating" style="font-size:16px;font-weight:bold;">Rating: {{review[3]}}/5</h1>
+                <h1 class="author" style="font-size:12px;">{{review[4]}}</h1>
+                <h1 class="date" style="font-size:12px;">{{review[6]}}<br></h1>
+                <p style="font-size:12px;">{{review[2]}}</p>
             </div>
         </a>
         {% endfor %}

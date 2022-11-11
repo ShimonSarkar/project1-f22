@@ -21,10 +21,10 @@
     <div class="img_cont">
         <img src="{{image_url}}" alt="">
     </div>
-    {% if product_type = 1 %}
+    {% if product_type == 1 %}
     <div>Price: {{tutoring_hourly_rate}}</div>
     {% endif %}
-    {% if product_type = 2 %}
+    {% if product_type == 2 %}
     <div>Price: {{study_resource_price}}</div>
     {% endif %}
     <div>Description: {{description}}</div>

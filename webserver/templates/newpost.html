@@ -17,7 +17,7 @@
 				<input type="text" class="login-field" value="" placeholder="description" name="description"></div>
 
 <div class="control-group">
-  <input type="checkbox" id="tutoring" name="tutoring" value="">
+  <input type="checkbox" id="tutoring" name="tutoring" value="on">
   <label for="tutoring"> Is this a tutoring session?</label><br>
   </div>
 
@@ -43,7 +43,7 @@
 {% for tag in tags %}
 
 <div class="control-group">
-<input type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="">
+<input type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="on">
 <label style="color:{{tag[2]}}" for="{{tag[0]}}"> {{tag[2]}}</label><br>
 </div>
 
@@ -54,7 +54,7 @@
 {% for class in classes %}
 
 <div class="control-group">
-<input type="checkbox" id="{{class[0]}}-{{class[3]}}" name="{{class[0]}}-{{class[3]}}" value="">
+<input type="checkbox" id="{{class[0]}}-{{class[3]}}" name="{{class[0]}}-{{class[3]}}" value="on">
 <label for="{{class[0]}}-{{class[3]}}"> {{class[1]}} with {{class[5]}} </label><br>
 </div>
 

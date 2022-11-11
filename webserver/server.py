@@ -251,7 +251,7 @@ def message():
 def createnewmessage():
     message_content = request.form['newmessage']
     args = request.args
-    receiver = args.get(receiver)
+    receiver = args.get("receiver")
     cmd = 'SELECT max(product_id) FROM Products_Posted';
     c = g.conn.execute(text(cmd));
     max_prod = c.fetchall()

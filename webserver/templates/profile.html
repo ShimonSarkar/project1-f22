@@ -51,7 +51,7 @@
         <h1>{{info[0][2]}}</h1>
         </div>
       
-      {% if {{flw[0]}} == 0 %}
+      {% if flw[0] == 0 %}
       <form action="/follow?uid={{info[0][0]}}" method="POST">
       <input type="follow" value="follow" class="btn btn-primary btn-large btn-block">
       </form>

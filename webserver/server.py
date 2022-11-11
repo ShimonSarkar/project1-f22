@@ -219,6 +219,7 @@ def profile():
     cursor = g.conn.execute(text(cmd), uid1 = uid);
     info = cursor.fetchall()
     context = dict(followers = followers, followings = followings, info = info)
+    print(context)
     cursor.close()
     
     return render_template("profile.html", **context)

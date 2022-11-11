@@ -327,9 +327,9 @@ def create_new_post():
     print("AHHH1")
     for t in tags:
         print(t[0])
-        print(request.form[t[0]])
-        if request.form[t[0]] is not None and request.form[t[0]] == "on":
-            my_tags.append(t[0])
+        print(request.form[str(t[0])])
+        if request.form[str(t[0])] is not None and request.form[str(t[0])] == "on":
+            my_tags.append(str(t[0]))
     print("AHHH2")
     for c in classes:
         if request.form[str(c[0] + '-' + c[3])] is not None and request.form[str(c[0] + '-' + c[3])] == "on":

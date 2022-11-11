@@ -200,7 +200,7 @@ def myprofile():
 ########### PROFILE ############
 
 app.route('/profile', method = ['GET'])
-def openpost():
+def profile():
     args = request.args
     uid = args.get("uid")
     cmd = 'SELECT follower_email FROM Followers WHERE user_email = (:uid1)';

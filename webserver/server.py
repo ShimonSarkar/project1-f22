@@ -246,8 +246,21 @@ def follow():
     uid = args.get("uid")
     print("AHHH")
     try:
-        cmd = 'INSERT INTO Users VALUES (:user1, :follower1)';
+        cmd = 'INSERT INTO Followers VALUES (:user1, :follower1)';
         c = g.conn.execute(text(cmd), user1 = uid, follower1 = session['email']);
+        c.close()
+        return redirect(str('/profile?' + uid))
+    except:
+        return redirect(str('/profile?' + uid))
+    
+@app.route('/unfollow', methods=['GET'])
+def follow():
+    args = request.args
+    uid = args.get("uid")
+    print("AHHH")
+    try:
+        cmd = 'DELETE FROM Followers WHERE user_email = :user1 and follower_email = :follower1';
+        c = g.conn.execute(text(cmd), follower1 = uid, user1 = session['email']);
         c.close()
         return redirect(str('/profile?' + uid))
     except:

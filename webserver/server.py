@@ -175,7 +175,7 @@ def create_new_account():
         return redirect('/newaccount')
         
 
-@app.route('/openpost', method = ['GET'])
+@app.route('/openpost', methods=['GET'])
 def openpost():
     args = request.args
     pid = args.get("pid")
@@ -199,7 +199,7 @@ def myprofile():
 
 ########### PROFILE ############
 
-@app.route('/profile', method = ['GET'])
+@app.route('/profile', methods=['GET'])
 def profile():
     render_template("profile.html")
     args = request.args

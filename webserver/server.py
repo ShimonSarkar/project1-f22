@@ -326,6 +326,8 @@ def create_new_post():
     my_classes = []
     print("AHHH1")
     for t in tags:
+        print(t[0])
+        print(request.form[t[0]])
         if request.form[t[0]] is not None and request.form[t[0]] == "on":
             my_tags.append(t[0])
     print("AHHH2")

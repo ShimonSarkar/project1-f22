@@ -72,6 +72,12 @@
       </a>
       {% endif %}
       
+      {% if info[0][0] != user_id %}
+      <a href="/newreview?uid={{info[0][0]}}"> 
+        <button type="button">message</button>
+      </a>
+      {% endif %}
+      
           
         <div class="app-title">
         <img src={{info[0][6]}} width="350" height="350">

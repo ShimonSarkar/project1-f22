@@ -255,7 +255,7 @@ def follow():
 
 
 @app.route('/message', methods=['GET'])
-def profile():
+def message():
     args = request.args
     uid = args.get("uid")
                            ###TO DO

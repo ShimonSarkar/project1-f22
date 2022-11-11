@@ -199,8 +199,9 @@ def myprofile():
 
 ########### PROFILE ############
 
-app.route('/profile', method = ['GET'])
+app.route('/profile')
 def profile():
+    render_template("profile.html")
     args = request.args
     uid = args.get("uid")
     cmd = 'SELECT follower_email FROM Followers WHERE user_email = (:uid1)';

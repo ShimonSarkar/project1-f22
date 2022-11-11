@@ -26,22 +26,19 @@
 
 </style>
 
-
-
-
-
 </head>
 
 
+
 <body>
+  
+ 
   
   <ul style="position:relative; top:-70px">
     <li><a href="">home</a></li>
     <li style="float:right"><a href="logout">logout</a></li>
     <li style="float:right"><a href="myprofile">my profile</a></li>
     <li style="float:right"><a href="newpost">new post</a></li>
-    
-    
   </ul>
   
   <div class="login">
@@ -53,6 +50,17 @@
         <div class="app-title">
         <h1>{{info[0][2]}}</h1>
         </div>
+      
+      
+      <form action="/follow?uid={{info[0][0]}}" method="POST">
+      <input type="follow" value="follow" class="btn btn-primary btn-large btn-block">
+      </form>
+      
+      <form action="/message?uid={{info[0][0]}}" method="POST">
+      <input type="message" value="message" class="btn btn-primary btn-large btn-block">
+      </form>
+      
+      
           
         <div class="app-title">
         <img src={{info[0][6]}} width="350" height="350">
@@ -65,7 +73,7 @@
         <p>cashapp: {{info[0][5]}}</p>
         </div>
       
-      <p style="margin:20px;"> </p>
+      <p style="margin:20px;"><br></p>
       
           <h1 style="font-size:14px;text-align:center;">Followers</h1>
           {% for follower in followers %}
@@ -78,7 +86,7 @@
           </div>
           {% endfor %}
       
-      <p style="margin:20px;"> </p>
+      <p style="margin:20px;"><br></p>
             
           <h1 style="font-size:14px;text-align:center;">Following</h1>
           {% for following in followings %}
@@ -91,7 +99,7 @@
           </div>
           {% endfor %}
       
-      <p style="margin:20px;"> </p>
+      <p style="margin:20px;"><br></p>
         
           
     </div>

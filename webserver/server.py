@@ -327,8 +327,10 @@ def create_new_post():
     print("AHHH1")
     for t in tags:
         print(t[0])
+        print(request.form['title'])
         print(request.form)
         print(request.form[str(t[0])])
+        print("AHHHH3")
         if request.form[str(t[0])] is not None and request.form[str(t[0])] == "on":
             my_tags.append(str(t[0]))
     print("AHHH2")

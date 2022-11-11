@@ -74,7 +74,15 @@
         <img src={{info[0][6]}} width="350" height="350">
         </div>
       
+                
+        <div class="app-subtitle">
+        <p>email: {{info[0][0]}}</p>
+        <p>uni: {{info[0][3]}}</p>
+        <p>venmo: {{info[0][4]}}</p>
+        <p>cashapp: {{info[0][5]}}</p>
+        </div>
       
+        <p style="margin:20px;"><br></p>
       
       {% if info[0][0] != user_id %}
       {% if flw == 0 %}
@@ -105,13 +113,6 @@
       {% endif %}
       
           
-          
-        <div class="app-subtitle">
-        <p>email: {{info[0][0]}}</p>
-        <p>uni: {{info[0][3]}}</p>
-        <p>venmo: {{info[0][4]}}</p>
-        <p>cashapp: {{info[0][5]}}</p>
-        </div>
       
       <p style="margin:20px;"><br></p>
       

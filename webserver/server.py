@@ -272,16 +272,7 @@ def unfollow():
     except:
         return redirect(url_for('.profile', uid=uid))
 
-      
-                           
-############## MESSAGE BUTTON ######
 
-
-@app.route('/message', methods=['GET'])
-def message():
-    args = request.args
-    uid = args.get("uid")
-                           ###TO DO
 
 ####################################
 

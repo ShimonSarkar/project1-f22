@@ -254,7 +254,7 @@ def follow():
         return redirect(str('/profile?' + uid))
     
 @app.route('/unfollow', methods=['GET'])
-def follow():
+def unfollow():
     args = request.args
     uid = args.get("uid")
     print("AHHH")

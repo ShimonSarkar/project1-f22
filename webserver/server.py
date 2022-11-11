@@ -217,7 +217,16 @@ def profile():
     cmd = 'SELECT * FROM Users WHERE email = (:uid1)';
     cursor = g.conn.execute(text(cmd), uid1 = uid);
     info = cursor.fetchall()
-    context = dict(followers = followers, followings = followings, info = info)
+    cursor.close()
+    
+    cmd = 'SELECT * FROM Followers WHERE follower_email = (:uid1) and user_email = (:uid2)' ;
+    cursor = g.conn.execute(text(cmd), uid1 = uid, uid = session['email']);
+    info = cursor.fetchall()
+    flw = 0
+    if len(info) > 0:
+        flw = 1
+    
+    context = dict(followers = followers, followings = followings, info = info, flw = flw)
     print(context)
     cursor.close()
     
@@ -225,13 +234,29 @@ def profile():
 
 
 
+############## FOLLOW BUTTON ######
 
 
+@app.route('/follow', methods=['GET'])
+def profile():
+    args = request.args
+    uid = args.get("uid")
+    try:
+        cmd = 'INSERT INTO Users VALUES (:user1, :follower1)';
+        c = g.conn.execute(text(cmd), user1 = uid, follower1 = session['email'];
+        c.close()
+        return redirect('/profile?' + uid)
+
+      
+                           
+############## MESSAGE BUTTON ######
 
 
-
-
-
+@app.route('/message', methods=['GET'])
+def profile():
+    args = request.args
+    uid = args.get("uid")
+                           ###TO DO
 
 ####################################
 

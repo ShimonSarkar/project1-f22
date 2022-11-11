@@ -28,7 +28,7 @@
   background: #3498DB;
   color: #FFF;
   font-size: 16px;
-  line-height: 15px;
+  line-height: 20px;
   padding: 5px 0;
   text-decoration: none;
   text-shadow: none;
@@ -61,6 +61,20 @@
 .post:hover {
     transform: scale(1.05);
     transition: transform .25s;
+}
+  
+.review {
+font-family: 'Rubik', sans-serif;
+display: inline-block;
+width: 600px;
+height: 200px;
+overflow: hidden;
+border-radius: 20px;
+background-color: white;
+padding: 1.5em;
+box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
+margin: 10px;
+transition: transform .25s;
 }
 
 .img_cont {
@@ -123,7 +137,7 @@ p {
         <p>cashapp: {{info[0][5]}}</p>
         </div>
       
-        <p style="margin:20px;"><br></p>
+        <p><br></p>
       
       {% if info[0][0] != user_id %}
       {% if flw == 0 %}
@@ -155,7 +169,7 @@ p {
       
           
       
-      <p style="margin:20px;"><br></p>
+      <p><br></p>
       
           <h1 style="font-size:14px;text-align:center;">Followers</h1>
           {% for follower in followers %}
@@ -168,7 +182,7 @@ p {
           </div>
           {% endfor %}
       
-      <p style="margin:20px;"><br></p>
+      <p><br></p>
             
           <h1 style="font-size:14px;text-align:center;">Following</h1>
           {% for following in followings %}
@@ -181,9 +195,6 @@ p {
           </div>
           {% endfor %}
       
-      <p style="margin:20px;"><br></p>
-        
-          
     </div>
       
       
@@ -203,7 +214,22 @@ p {
                 <p>{{post[4]}}</p>
                 <p>Unfinished!</p>
             </div>
-            <a>
+            </a>
+        {% endfor %}
+    </div>
+          
+      <p style="margin:10px;"><br></p>
+      <h1 style="font-size:18px;text-align:center;">Reviews</h1>
+      <div class="post_container">
+        {% for review in reviews %}
+          <a href="profile?uid={{review[4]}}">
+            <div class="review">
+                <h1 class="title" style="font-size:16px">{{post[2]}}</h1>
+                <h1 class="title" style="font-size:14px">Rating: {{post[3]}}/5</h1>
+                <p class="date">{{review[6]}}<br></p>
+                <p>{{post[2]}}</p>
+            </div>
+        </a>
         {% endfor %}
     </div>
       

@@ -496,7 +496,13 @@ def clear_null_entries(values):
             values[i] = None
     return values
    
+############ NEW ERROR PAGE ###################
+@app.errorhandler(500)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('login.html'), 404
 
+####################################
 
 
 

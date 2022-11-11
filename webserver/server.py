@@ -268,7 +268,7 @@ def createnewmessage():
 ############## FOLLOW BUTTON ######
 
 
-@app.route('/follow', methods=['GET'])
+@app.route('/follow')
 def follow():
     args = request.args
     uid = args.get("uid")
@@ -281,7 +281,7 @@ def follow():
         return redirect(url_for('.profile', uid=uid))
     
 
-@app.route('/unfollow', methods=['GET'])
+@app.route('/unfollow')
 def unfollow():
     args = request.args
     uid = args.get("uid")

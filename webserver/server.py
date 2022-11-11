@@ -297,24 +297,20 @@ def new_post():
 def create_new_post():
     #Get all tags, classes, and products
     #try:
-    print("AHHH1")
     cmd = 'SELECT tag_id FROM Tags';
     c = g.conn.execute(text(cmd));
     tags = c.fetchall()
     c.close()
-    print("AHHH2")
 
     cmd = 'SELECT course_id, professor_id FROM Class_Sections';
     c = g.conn.execute(text(cmd));
     classes = c.fetchall()
     c.close()
-    print("AHHH3")
 
     cmd = 'SELECT max(product_id) FROM Products_Posted';
     c = g.conn.execute(text(cmd));
     max_prod = c.fetchall()
     c.close()
-    print("AHHH4")
 
     values = []
     values.append(request.form['title'])
@@ -325,14 +321,14 @@ def create_new_post():
     values.append(request.form['study_resource_price'])
     values.append(request.form['study_resource_download_url'])
     values = clear_null_entries(values)
-    print("AHHH5")
 
     my_tags = []
     my_classes = []
-
+    print("AHHH1")
     for t in tags:
         if request.form[t[0]] != None and request.form[t[0]] == "on":
             my_tags.append(t[0])
+    print("AHHH2")
     for c in classes:
         if request.form[str(c[0] + '-' + c[3])] != None and request.form[str(c[0] + '-' + c[3])] == "on":
             my_classes.append(tuple(c[0], c[3]))  

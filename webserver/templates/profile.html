@@ -23,6 +23,27 @@
       transform: scale(1.05);
       transition: transform .25s;
   }
+  
+  .btn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #777;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+  }
+
+  .btn:hover {
+  background-color: #2980B9;
+  }
 
 </style>
 
@@ -53,7 +74,7 @@
       {% if info[0][0] != user_id %}
       {% if flw == 0 %}
       <a href="/follow?uid={{info[0][0]}}"> 
-        <button type="button">follow</button>
+        <button type="button" class="btn btn-primary btn-large btn-block">follow</button>
       </a>
       {% endif %}
       {% endif %}
@@ -61,20 +82,20 @@
       {% if info[0][0] != user_id %}
       {% if flw == 1 %}
       <a href="/unfollow?uid={{info[0][0]}}"> 
-        <button type="button">unfollow</button>
+        <button type="button" class="btn btn-primary btn-large btn-block">unfollow</button>
       </a>
       {% endif %}
       {% endif %}
       
       {% if info[0][0] != user_id %}
       <a href="/message?uid={{info[0][0]}}"> 
-        <button type="button">message</button>
+        <button type="button" class="btn btn-primary btn-large btn-block">message</button>
       </a>
       {% endif %}
       
       {% if info[0][0] != user_id %}
       <a href="/newreview?uid={{info[0][0]}}"> 
-        <button type="button">write review</button>
+        <button type="button" class="btn btn-primary btn-large btn-block">write review</button>
       </a>
       {% endif %}
       

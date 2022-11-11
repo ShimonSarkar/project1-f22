@@ -221,7 +221,7 @@ def profile():
     if len(flwer) > 0:
         flw = 1
     
-    context = dict(followers = followers, followings = followings, info = info, flw = flw)
+    context = dict(followers = followers, followings = followings, info = info, flw = flw, user_id = session['email'])
     cursor.close()
     
     return render_template("profile.html", **context)

@@ -358,14 +358,16 @@ def create_new_post():
 ##################### REVIEWS #######
 
 
-@app.route('/newreview')
+@app.route('/newreview', methods=['GET'])
 def new_review():
-    return render_template('newreview.html')
-
-@app.route('/createnewreview', methods=['POST', 'GET'])
-def create_new_review():
     args = request.args
     uid = args.get("uid")
+    context = dict(current_user = uid)
+    return render_template('newreview.html', **context)
+
+@app.route('/createnewreview', methods=['POST'])
+def create_new_review():
+    uid = request.form['current_user']
     
     values = []
     values.append(request.form['title'])

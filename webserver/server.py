@@ -354,6 +354,40 @@ def create_new_post():
         flash('Error creating post! Ensure all fields are entered correctly.')
         return redirect('/newpost')
     
+    
+##################### REVIEWS #######
+
+
+app.route('/newreview')
+def new_review():
+    return render_template('newreview.html')
+
+@app.route('/createnewreview', methods=['POST', 'GET'])
+def create_new_review():
+    args = request.args
+    uid = args.get("uid")
+    
+    values = []
+    values.append(request.form['title'])
+    values.append(request.form['description'])
+    values.append(request.form['rating'])
+    values = clear_null_entries(values)
+    try:
+        cmd = 'SELECT max(product_id) FROM Products_Posted';
+        c = g.conn.execute(text(cmd));
+        max_id = c.fetchall()
+        rid = max_id[0][0]+1
+        c.close()
+        
+        cmd = 'INSERT INTO Users VALUES (:rid1, :title1, :desc1, :rating1, :er1, :ed1, :date1)';
+        c = g.conn.execute(text(cmd), rid1 = rid, title1 = values[0], desc1 = values[1], 
+                           rating1 = values[2], er1 = session['email'], ed1 = uid, date1 = date.today());
+        c.close()
+        
+        return redirect(url_for('.profile', uid=uid))
+    except:
+        flash('Error writing review! Ensure all fields are entered correctly.')
+        return redirect('/newreview')
 
 ####################################
 

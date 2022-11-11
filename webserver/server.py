@@ -123,7 +123,7 @@ def home():
         
 @app.route('/posts')
 def posts():
-    cmd = 'SELECT * FROM Products_Posted; #WHERE user_email != (:email1)';
+    cmd = 'SELECT * FROM Products_Posted'; #WHERE user_email != (:email1)';
     cursor = g.conn.execute(text(cmd), email1 = session['email']);
     posts = cursor.fetchall()
     context = dict(posts=posts)

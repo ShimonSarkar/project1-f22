@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/static/mainstyle.css" type="text/css">
+
+<ul style="position:relative; top:-70px">
+    <li><a href="/">home</a></li>
+    <li style="float:right"><a href="logout">logout</a></li>
+    <li style="float:right"><a href="myprofile">my profile</a></li>
+    <li style="float:right"><a href="newpost">new post</a></li>
+  </ul>
+
+
+<form action="/createnewreview", method="POST">
+<div class="login" style="width:800px">
+<div class="login-screen" style="width:800px">
+<div class="app-title">
+<h1>Write Review</h1>
+</div>
+<div class="login-form" style="width:800px">
+<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="title" name="title"></div>
+
+<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="description" name="description"></div>
+
+<div class="control-group">
+				<input type="number" class="login-field" value="" placeholder="rating" name="rating" min="1" max="5" step="1"></div>
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <p class=flashes>
+    {% for message in messages %}
+      <p style="color:red">{{ message }}</p>
+    {% endfor %}
+    </p>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+	
+	
+<input type="submit" value="write" class="btn btn-primary btn-large btn-block">
+
+</div>
+</div>
+</div>
+</form>

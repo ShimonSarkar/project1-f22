@@ -390,7 +390,7 @@ def create_new_review():
     return redirect(url_for('.profile', uid=uid))
     #except:
     #    flash('Error writing review! Ensure all fields are entered correctly.')
-    #    return redirect('/newreview')
+    #    return redirect(url_for('.newreview', uid=uid))
 
 ####################################
 

@@ -19,6 +19,7 @@ import os
 from sqlalchemy import *
 from sqlalchemy.pool import NullPool
 from flask import Flask, request, render_template, g, redirect, Response, abort, session, flash, url_for
+from datetime import date
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
@@ -220,16 +221,12 @@ def profile():
     
     cmd = 'SELECT * FROM Followers WHERE user_email = (:uid1) and follower_email = (:uid2)' ;
     cursor = g.conn.execute(text(cmd), uid1 = uid, uid2 = session['email']);
-    print(uid)
-    print(session['email'])
     flwer = cursor.fetchall()
-    print(flwer)
     flw = 0
     if len(flwer) > 0:
         flw = 1
     
     context = dict(followers = followers, followings = followings, info = info, flw = flw)
-    print(context)
     cursor.close()
     
     return render_template("profile.html", **context)
@@ -272,7 +269,96 @@ def unfollow():
     except:
         return redirect(url_for('.profile', uid=uid))
 
+    
+############ ADD POST #############
 
+
+@app.route('/newpost')
+def new_post():
+    try:
+        cmd = 'SELECT * FROM Tags';
+        c = g.conn.execute(text(cmd));
+        tags = c.fetchall()
+        c.close()
+        
+        cmd = 'SELECT * FROM Class_Sections';
+        c = g.conn.execute(text(cmd));
+        classes = c.fetchall()
+        c.close()
+        
+        context = dict(classes = classes, tags = tags)
+        return render_template('newpost.html', **context)
+    except:
+        return redirect('/')
+    
+
+
+@app.route('/createnewpost', methods=['POST'])
+def create_new_account():
+    #Get all tags, classes, and products
+    #try:
+    cmd = 'SELECT tag_id FROM Tags';
+    c = g.conn.execute(text(cmd));
+    tags = c.fetchall()
+    c.close()
+
+    cmd = 'SELECT course_id, professor_id FROM Class_Sections';
+    c = g.conn.execute(text(cmd));
+    classes = c.fetchall()
+    c.close()
+
+    cmd = 'SELECT max(product_id) FROM Products_Posted';
+    c = g.conn.execute(text(cmd));
+    max_prod = p.fetchall()
+    c.close()
+
+    values = []
+    values.append(request.form['title'])
+    values.append(request.form['description'])
+    values.append(request.form['image'])
+    values.append(request.form['tutoring_hourly_rate'])
+    values.append(request.form['tutoring_schedule'])
+    values.append(request.form['study_resource_price'])
+    values.append(request.form['study_resource_download_url'])
+    values = clear_null_entries(values)
+
+    my_tags = []
+    my_classes = []
+
+    for t in tags:
+        if request.form[t[0]] != None and request.form[t[0]] == "on":
+            my_tags.append(t[0])
+    for c in classes:
+        if request.form[str(c[0] + '-' + c[3])] != None and request.form[str(c[0] + '-' + c[3])] == "on":
+            my_classes.append(tuple(c[0], c[3]))  
+    pid = max_prod[0][0]+1
+    tutstu = 2
+    if request.form['tutoring'] != None and request.form['tutoring'] == "on":
+        tutstu = 1
+
+    #Insert product
+    cmd = 'INSERT INTO Users VALUES (:email1, :pid1, :title1, :desc1, :date1, :tut1, :image1, :thr1, :ts1, :srp1, :srd1)';
+    c = g.conn.execute(text(cmd), email1 = sessions['email'], pid1 = pid, title1 = values[0], 
+                       desc1 = values[1], date1 = date.today(), tut1 = tutstu, image1 = values[2], 
+                       thr1 = values[3], ts1 = values[4], srp1 = values[5], srd1 = values[6]);
+    c.close()
+
+    #Insert tags
+    for t2 in my_tags:
+        cmd = 'INSERT INTO Tagged_Products VALUES (:pid1, :tid1)';
+        c = g.conn.execute(text(cmd), pid1 = pid, tid1 = t2)
+        c.close()
+
+    #Insert tags
+    for c2 in my_classes:
+        cmd = 'INSERT INTO Product_Class_Relation VALUES (:pid1, :prof1, :cid1)';
+        c = g.conn.execute(text(cmd), pid1 = pid, prof1 = c2[3], cid1 = c2[0])
+        c.close()
+    return redirect('/')
+#    except:
+#        flash('Error creating post! Ensure all fields are entered correctly.')
+#        return redirect('/newpost')
+    
 
 ####################################
 

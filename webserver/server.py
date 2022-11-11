@@ -335,10 +335,9 @@ def create_new_post():
     tutstu = 2
     if 'tutoring' in request.form:
         tutstu = 1
-    print("AHHH6")
 
     #Insert product
-    cmd = 'INSERT INTO Users VALUES (:email1, :pid1, :title1, :desc1, :date1, :tut1, :image1, :thr1, :ts1, :srp1, :srd1)';
+    cmd = 'INSERT INTO Products_Posted VALUES (:email1, :pid1, :title1, :desc1, :date1, :tut1, :image1, :thr1, :ts1, :srp1, :srd1)';
     c = g.conn.execute(text(cmd), email1 = session['email'], pid1 = pid, title1 = values[0], 
                        desc1 = values[1], date1 = date.today(), tut1 = tutstu, image1 = values[2], 
                        thr1 = values[3], ts1 = values[4], srp1 = values[5], srd1 = values[6]);

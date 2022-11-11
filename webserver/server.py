@@ -245,10 +245,12 @@ def follow():
     args = request.args
     uid = args.get("uid")
     print(url_for('/profile', uid=uid))
+    print("AHHHHH")
     try:
         cmd = 'INSERT INTO Followers VALUES (:user1, :follower1)';
         c = g.conn.execute(text(cmd), user1 = uid, follower1 = session['email']);
         c.close()
+        print(url_for('/profile', uid=uid))
         return redirect(url_for('/profile', uid=uid))
     except:
         return redirect(url_for('/profile', uid=uid))
@@ -258,7 +260,6 @@ def follow():
 def unfollow():
     args = request.args
     uid = args.get("uid")
-    print("AHHH")
     try:
         cmd = 'DELETE FROM Followers WHERE user_email = :user1 and follower_email = :follower1';
         c = g.conn.execute(text(cmd), follower1 = uid, user1 = session['email']);

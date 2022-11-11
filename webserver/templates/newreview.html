@@ -23,6 +23,9 @@
 
 <div class="control-group">
 				<input type="number" class="login-field" value="" placeholder="rating" name="rating" min="1" max="5" step="1"></div>
+	
+<div class="control-group">
+			<input type="hidden" value="{{current_user}}" name="current_user"></div>
 
 
 {% with messages = get_flashed_messages() %}

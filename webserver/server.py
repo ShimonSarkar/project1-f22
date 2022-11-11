@@ -325,18 +325,16 @@ def create_new_post():
     my_tags = []
     my_classes = []
     print("AHHH1")
-    print(tags)
-    print(tags[0])
     for t in tags:
-        if request.form[t[0]] != None and request.form[t[0]] == "on":
+        if request.form[t[0]] is not None and request.form[t[0]] == "on":
             my_tags.append(t[0])
     print("AHHH2")
     for c in classes:
-        if request.form[str(c[0] + '-' + c[3])] != None and request.form[str(c[0] + '-' + c[3])] == "on":
+        if request.form[str(c[0] + '-' + c[3])] is not None and request.form[str(c[0] + '-' + c[3])] == "on":
             my_classes.append(tuple(c[0], c[3]))  
     pid = max_prod[0][0]+1
     tutstu = 2
-    if request.form['tutoring'] != None and request.form['tutoring'] == "on":
+    if request.form['tutoring'] is not None and request.form['tutoring'] == "on":
         tutstu = 1
     print("AHHH6")
 

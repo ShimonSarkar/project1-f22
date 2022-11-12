@@ -451,8 +451,9 @@ def filter_posts():
     values = values + ')'
 
     #Get products
-    cmd = 'SELECT * FROM Products_Posted WHERE product_id IN ((SELECT product_id FROM Products_Posted) EXCEPT SELECT t2.product_id FROM ((SELECT product_id, tag_id FROM Products_Posted, (SELECT tag_id FROM Tags WHERE tag_id in :values1) AS t) EXCEPT (SELECT * FROM Tagged_Products)) as t2)';
-    c = g.conn.execute(text(cmd), values1 = values);
+    cmd = 'SELECT * FROM Products_Posted WHERE product_id IN ((SELECT product_id FROM Products_Posted) EXCEPT SELECT t2.product_id FROM ((SELECT product_id, tag_id FROM Products_Posted, (SELECT tag_id FROM Tags WHERE tag_id in '
+    cmd = cmd + values + ') AS t) EXCEPT (SELECT * FROM Tagged_Products)) as t2)';
+    c = g.conn.execute(text(cmd));
     posts = c.fetchall()
     c.close()
 

@@ -251,7 +251,7 @@ p {
       <h1 style="font-size:18px;text-align:center;">Reviews</h1>
       <div class="review_container">
         {% for review in reviews %}
-        <div class="outerreview" style="width:550px;">
+        <div class="outerreview" style="width:570px;">
           <a href="profile?uid={{review[4]}}">
             <div class="review">
                 <h1 class="title" style="font-size:20px;font-weight:bold;">{{review[1]}}</h1>
@@ -263,7 +263,7 @@ p {
         </a>
         {% if review[4] == user_id %}
             <a href="deletereview?rid={{review[0]}}">
-            <button type="button" class="redbtn btn-primary btn-large btn-block">delete post</button>
+            <button type="button" style="margin-left:235px" class="redbtn btn-primary btn-large btn-block">delete review</button>
             </a>
             {% endif %}
         </div>

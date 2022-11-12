@@ -44,6 +44,27 @@
   background-color: #2980B9;
   }
   
+  .redbtn {
+  border: 2px solid transparent;
+  background: #E32636;
+  color: #FFF;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 5px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 100px;
+  margin: 10px auto;
+  }
+
+  .redbtn:hover {
+  background-color: #C32636;
+  }
+  
   .post {
     font-family: 'Rubik', sans-serif;
     display: inline-block;
@@ -207,6 +228,13 @@ p {
         {% for post in posts %}
         <a href="openpost?pid={{post[1]}}">
             <div class="post">
+              
+              {% if info[0][0] == user_id %}
+              <a href="deletepost?pid={{post[0]}}">
+              <button type="button" class="redbtn btn-primary btn-large btn-block">delete post</button>
+              </a>
+              {% endif %}
+              
                 <p class="title">{{post[2]}}</p>
                 <div class="img_cont">
                     <img src={{post[6]}}>

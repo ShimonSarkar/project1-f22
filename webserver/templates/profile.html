@@ -229,8 +229,9 @@ p {
       <h1 style="font-size:18px;text-align:center;">Posts</h1>
       <div class="post_container">
         {% for post in posts %}
+        <div class="post">
         <a href="openpost?pid={{post[1]}}">
-            <div class="post">
+            
               
               
                 <p class="title">{{post[2]}}</p>
@@ -239,13 +240,15 @@ p {
                 </div>
                 <p>{{post[4]}}</p>
                 <p>Unfinished!</p>
-            </div>
             </a>
+            
+            
               {% if info[0][0] == user_id %}
               <a href="deletepost?pid={{post[1]}}">
               <button type="button" class="redbtn btn-primary btn-large btn-block">delete post</button>
               </a>
               {% endif %}
+          </div>
         {% endfor %}
     </div>
           

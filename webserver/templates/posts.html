@@ -21,7 +21,7 @@
             background-color: white;
             padding: 1.5em;
             box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
-            margin: 50px;
+            margin: 35px;
             transition: transform .25s;
         }
 
@@ -64,13 +64,16 @@
   </ul>
 
 
-    <h1>Hello - coming soon!</h1>
-
 <div class="column" style="width:300px;display:inline-block;vertical-align:top;margin:25px">
 
 <div class="login">
     <div class="login-screen" style="width:300px">
     
+        <div class="app-subtitle">
+        <h1 style="font-size:18px">See Classes</h1>
+        </div>
+        
+        
         <a href="classes">
         <button type="button" style="color:white" class="btn btn-primary btn-large btn-block">classes</button>
         </a>
@@ -108,7 +111,7 @@
     
     
     
-  <div class="column" style="width:900px;display:inline-block;vertical-align:top;margin:25px">
+  <div class="column" style="width:950px;display:inline-block;vertical-align:top;margin:25px">
     <div class="post_container">
         {% for post in posts %}
         <a href="openpost?pid={{post[1]}}">

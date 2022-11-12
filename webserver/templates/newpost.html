@@ -13,13 +13,19 @@
 <div class="login-screen">
 	
 <div class="app-title">
-<h1>New Post</h1>
+<h1>New Post<br></h1>
 </div>
+	
 	
 <div class="row">
     <div class="column" style="width:300px;display:inline-block;vertical-align:top;margin:25px">
 	
 <div class="login-form">
+	
+<div class="app-subtitle">
+<h1 style="font-size:18px">Product Details</h1>
+</div>
+	
 <div class="control-group">
 				<input type="text" class="login-field" value="" placeholder="post title" name="title"></div>
 
@@ -28,7 +34,7 @@
 
 <div class="control-group">
   <input type="checkbox" id="tutoring" name="tutoring" value="on">
-  <label for="tutoring"> Is this a tutoring session?</label><br>
+  <label for="tutoring" style="font-size:12px"> Is this a tutoring session?</label><br>
   </div>
 
 <div class="control-group">
@@ -38,13 +44,13 @@
 				<input type="text" class="login-field" value="" placeholder="hourly rate (tutoring only)" name="tutoring_hourly_rate"></div>
 
 <div class="control-group">
-				<input type="text" class="login-field" value="" placeholder=""schedule (non-tutoring only)"" name="tutoring_schedule"></div>
+				<input type="text" class="login-field" value="" placeholder="schedule (non-tutoring only)" name="tutoring_schedule"></div>
         
 <div class="control-group">
-				<input type="text" class="login-field" value="" placeholder=""price (non-tutoring only)"" name="study_resource_price"></div>
+				<input type="text" class="login-field" value="" placeholder="price (non-tutoring only)" name="study_resource_price"></div>
         
 <div class="control-group">
-				<input type="text" class="login-field" value="" placeholder=""schedule (non-tutoring only)"" name="study_resource_download_url"></div>
+				<input type="text" class="login-field" value="" placeholder="schedule (non-tutoring only)" name="study_resource_download_url"></div>
 
 	
 </div>
@@ -53,14 +59,14 @@
 <div class="column" style="width:300px;display:inline-block;vertical-align:top;margin:25px">
 	
 <div class="app-subtitle">
-<h1>Add Tags</h1>
+<h1 style="font-size:18px">Add Tags</h1>
 </div>
 
 {% for tag in tags %}
 
 <div class="control-group">
 <input type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="on">
-<label style="color:{{tag[2]}}" for="{{tag[0]}}"> {{tag[2]}}</label><br>
+<label style="color:{{tag[2]}};text-align:center" for="{{tag[0]}}"> {{tag[1]}}</label><br>
 </div>
 
 {% endfor %}
@@ -69,11 +75,15 @@
 	    
 <div class="column" style="width:300px;display:inline-block;vertical-align:top;margin:25px">
 
+<div class="app-subtitle">
+<h1 style="font-size:18px">Add Related Courses</h1>
+</div>
+	
 {% for class in classes %}
 
 <div class="control-group">
 <input type="checkbox" id="{{class[0]}}-{{class[3]}}" name="{{class[0]}}-{{class[3]}}" value="on">
-<label for="{{class[0]}}-{{class[3]}}"> {{class[1]}} with {{class[5]}} </label><br>
+<label for="{{class[0]}}-{{class[3]}}" style="text-align:center"> {{class[1]}} with {{class[5]}} </label><br>
 </div>
 
 {% endfor %}

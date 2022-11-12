@@ -124,11 +124,16 @@ def home():
         
 @app.route('/posts')
 def posts():
-    cmd = 'SELECT * FROM Products_Posted'; #WHERE user_email != (:email1)';
-    cursor = g.conn.execute(text(cmd), email1 = session['email']);
+    cmd = 'SELECT * FROM Products_Posted';
+    cursor = g.conn.execute(text(cmd));
     posts = cursor.fetchall()
     cursor.close()
-    context = dict(posts=posts)
+    
+    cmd = 'SELECT * FROM Tags';
+    cursor = g.conn.execute(text(cmd));
+    tags = cursor.fetchall()
+    cursor.close()
+    context = dict(posts=posts, tags=tags)
     return render_template("posts.html", **context)
 
 @app.route('/login', methods=['POST'])
@@ -177,7 +182,11 @@ def create_new_account():
     except:
         flash('Error creating account! Ensure all fields are entered correctly.')
         return redirect('/newaccount')
-        
+
+    
+############## OPENING POSTS ################
+    
+    
 @app.route('/openpost', methods=['GET'])
 def openpost():
     args = request.args
@@ -188,14 +197,13 @@ def openpost():
     context = dict(user_email = products[0][0], product_id = products[0][1], title = products[0][2], description = products[0][3], posted_date = products[0][4], product_type = products[0][5], image_url = products[0][6], tutoring_hourly_rate = products[0][7], tutoring_schedule = products[0][8], study_resource_price = products[0][9], study_resource_download_url = products[0][10])
     return render_template("post.html", **context)
 
-##############################
+
+
+########### PROFILE ############
 
 @app.route('/myprofile')
 def myprofile():
     return redirect(url_for('.profile', uid=session['email']))
-
-
-########### PROFILE ############
 
 @app.route('/profile', methods=['GET'])
 def profile():
@@ -239,6 +247,10 @@ def profile():
     
     return render_template("profile.html", **context)
 
+
+########### MESSAGING ############
+
+
 @app.route('/message', methods = ['GET'])
 def message():
     args = request.args
@@ -265,6 +277,9 @@ def createnewmessage():
     cmd = 'INSERT INTO Messages_Sent_Received VALUES (:id, :content, :date_created, :time_created, :sender_email, :receiver_email, :referred_product)'
     c = g.conn.execute(text(cmd), id = max_prod[0][0] + 1, content = message_content, date_created = date.today(), time_created = current_time, sender_email = session['email'], receiver_email = receiver, referred_product = None)
     return redirect(url_for('.message', uid=receiver))
+    
+    
+    
     
 ############## FOLLOW BUTTON ######
 
@@ -316,7 +331,6 @@ def new_post():
     except:
         return redirect('/')
     
-
 
 @app.route('/createnewpost', methods=['POST'])
 def create_new_post():
@@ -412,7 +426,51 @@ def delete_post():
     #    return redirect('/myprofile')
     
 
-    
+##################### FILTERING POSTS #######
+
+@app.route('/filteredposts', methods=['POST'])
+def filter_posts():
+    #try:
+    cmd = 'SELECT tag_id FROM Tags';
+    c = g.conn.execute(text(cmd));
+    tags = c.fetchall()
+    c.close()
+
+    my_tags = []
+
+    for t in tags:
+        if (str(t[0])) in request.form:
+            my_tags.append(t[0])
+    if len(my_tags) == 0:
+        return redirect('/posts')
+
+    values = '('
+    for mt in my_tags:
+        values = values + mt + ','
+    values = values[0:len(values)-1]
+    values = values + ')'
+
+    #Get products
+    cmd = 'SELECT * FROM Products_Posted WHERE product_id IN ((SELECT product_id FROM Products_Posted) EXCEPT SELECT t2.product_id FROM ((SELECT product_id, tag_id FROM Products_Posted, (SELECT tag_id FROM Tags WHERE tag_id in :values1) AS t) EXCEPT (SELECT * FROM Tagged_Products)) as t2)';
+    c = g.conn.execute(text(cmd), values1 = values);
+    posts = c.fetchall()
+    c.close()
+
+    cmd = 'SELECT * FROM Tags';
+    cursor = g.conn.execute(text(cmd));
+    alltags = cursor.fetchall()
+    cursor.close()
+    context = dict(posts=posts, tags=alltags)
+    return render_template("posts.html", **context)
+
+#    except:
+ #       return redirect('/posts')
+
+
+
+
+
+
     
     
 ##################### REVIEWS #######

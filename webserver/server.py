@@ -385,6 +385,36 @@ def create_new_post():
         return redirect('/newpost')
     
     
+    
+##################### DELETE POST #######
+    
+    
+
+@app.route('/deletepost', methods=['GET'])
+def delete_post():
+    args = request.args
+    pid = args.get("pid")
+    try:
+        #Find whose post it is, make sure this matches with session
+        cmd = 'SELECT user_email FROM Products_Posted WHERE product_id = :pid1';
+        c = g.conn.execute(text(cmd), pid1 = pid);
+        found_user = c.fetchall()
+        c.close()
+        if found_user[0][0] != session['email']:
+            return redirect('/myprofile')
+        
+        #Delete post from products_posted
+        cmd = 'DELETE FROM Products_Posted WHERE product_id = :pid1;
+        c = g.conn.execute(text(cmd), pid1 = pid);
+        c.close()
+        return redirect('/myprofile')
+    except:
+        return redirect('/myprofile')
+    
+
+    
+    
+    
 ##################### REVIEWS #######
 
 

@@ -186,7 +186,6 @@ def create_new_account():
     
 ############## OPENING POSTS ################
     
-    
 @app.route('/openpost', methods=['GET'])
 def openpost():
     args = request.args
@@ -194,10 +193,17 @@ def openpost():
     cmd = 'SELECT * FROM Products_Posted WHERE product_id = (:pid1)';
     cursor = g.conn.execute(text(cmd), pid1 = pid);
     products = cursor.fetchall()
-    context = dict(user_email = products[0][0], product_id = products[0][1], title = products[0][2], description = products[0][3], posted_date = products[0][4], product_type = products[0][5], image_url = products[0][6], tutoring_hourly_rate = products[0][7], tutoring_schedule = products[0][8], study_resource_price = products[0][9], study_resource_download_url = products[0][10])
+    
+    cmd = 'SELECT * FROM Tags WHERE tag_id in (SELECT tag_id FROM Tagged_Products WHERE product_id = (:pid1))';
+    cursor = g.conn.execute(text(cmd), pid1 = pid);
+    tags = cursor.fetchall();
+    
+    cmd = 'SELECT * FROM Reviews WHERE reviewed_email = (:email1)';
+    cursor = g.conn.execute(text(cmd), email1 = products[0][0])
+    reviews = cursor.fetchall();
+    
+    context = dict(reviews = reviews, tags = tags, user_email = products[0][0], product_id = products[0][1], title = products[0][2], description = products[0][3], posted_date = products[0][4], product_type = products[0][5], image_url = products[0][6], tutoring_hourly_rate = products[0][7], tutoring_schedule = products[0][8], study_resource_price = products[0][9], study_resource_download_url = products[0][10])
     return render_template("post.html", **context)
-
-
 
 ########### PROFILE ############
 

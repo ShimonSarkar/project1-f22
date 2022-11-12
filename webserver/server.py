@@ -446,7 +446,7 @@ def filter_posts():
 
     values = '('
     for mt in my_tags:
-        values = values + mt + ','
+        values = values + str(mt) + ','
     values = values[0:len(values)-1]
     values = values + ')'
 

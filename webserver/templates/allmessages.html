@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box_container {
+            font-family: 'Ubuntu', sans-serif;
+            width: 100%;
+        }
+
+        .message_box {
+            margin: auto;
+            position: relative;
+            width: 80%;
+            background-color: #E8E7EA;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            height: 150px;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+
+        button,
+        .word_cont {
+            display: inline-block;
+        }
+
+        button {
+            right: 40px;
+            position: absolute;
+            font-family: 'Ubuntu', sans-serif;
+            padding-left: 10px;
+            padding-right: 10px;
+            width: 18%;
+            height: 60px;
+            box-sizing: border-box;
+            border-color: transparent;
+            border-radius: 10px;
+            transition: .15s;
+            background-color: #1086fcda;
+            color: white;
+            font-size: 17px;
+        }
+
+        button:hover {
+            transition: .15s;
+            background-color: #1086FC;
+        }
+
+        .profile {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-left: 20px;
+        }
+
+        .word_cont {
+            margin-left: 20px;
+            font-size: 17px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box_container">
+        {% for person in people %}
+        <div class="message_box">
+            <img class="profile" src="{{person[5]}}">
+            <div class="word_cont">
+                <p class="name">{{person[1]}}</p>
+                <p class="name">{{person[0]}}</p>
+            </div>
+            <button>Message</button>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>

@@ -65,7 +65,7 @@
 {% for tag in tags %}
 
 <div class="control-group">
-<input type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="on">
+<input style="float:left;width:30px" type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="on">
 <label style="color:{{tag[2]}};text-align:center" for="{{tag[0]}}"> {{tag[1]}}</label><br>
 </div>
 
@@ -82,7 +82,7 @@
 {% for class in classes %}
 
 <div class="control-group">
-<input type="checkbox" style="float:right" id="{{class[0]}}-{{class[3]}}" name="{{class[0]}}-{{class[3]}}" value="on">
+<input type="checkbox" style="float:left;width:30px" id="{{class[0]}}-{{class[3]}}" name="{{class[0]}}-{{class[3]}}" value="on">
 <label for="{{class[0]}}-{{class[3]}}" style="text-align:center"> {{class[1]}} with {{class[5]}} </label><br>
 </div>
 

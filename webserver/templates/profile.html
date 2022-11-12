@@ -240,15 +240,14 @@ p {
                 </div>
                 <p>{{post[4]}}</p>
                 <p>Unfinished!</p>
-            </a>
             
-              <div>
+            
               {% if info[0][0] == user_id %}
               <a href="deletepost?pid={{post[1]}}">
               <button type="button" class="redbtn btn-primary btn-large btn-block">delete post</button>
               </a>
               {% endif %}
-            </div>
+          </a>
           </div>
         {% endfor %}
     </div>

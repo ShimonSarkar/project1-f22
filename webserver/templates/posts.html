@@ -66,6 +66,49 @@
 
     <h1>Hello - coming soon!</h1>
 
+<div class="column" style="width:400px;display:inline-block;vertical-align:top;margin:25px">
+
+<div class="login">
+    <div class="login-screen">
+    
+        <a href="classes">
+        <button type="button" style="color:white" class="btn btn-primary btn-large btn-block">classes</button>
+        </a>
+
+    </div>
+</div>
+    
+<form action="/filteredposts", method="POST">
+  <div class="login">
+    <div class="login-screen">
+    
+        <div class="app-subtitle">
+        <h1 style="font-size:18px">Filter Posts</h1>
+        </div>
+    
+        {% for tag in tags %}
+
+        <div class="control-group">
+        <input style="float:left;width:30px" type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="on">
+        <label style="color:{{tag[2]}};text-align:center" for="{{tag[0]}}"> {{tag[1]}}</label><br>
+        </div>
+
+        {% endfor %}
+        
+        <input type="submit" style="color:white" value="filter" class="btn btn-primary btn-large btn-block">
+    
+    </div>
+  </div>
+</form>
+    
+    
+    
+    
+</div>
+    
+    
+    
+  <div class="column" style="width:400px;display:inline-block;vertical-align:top;margin:25px">
     <div class="post_container">
         {% for post in posts %}
         <a href="openpost?pid={{post[1]}}">
@@ -77,9 +120,10 @@
                 <p>{{post[4]}}</p>
                 <p>Unfinished!</p>
             </div>
-            <a>
+            </a>
         {% endfor %}
     </div>
+  </div>
 </body>
 
 </html>

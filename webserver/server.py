@@ -404,7 +404,7 @@ def delete_post():
             return redirect('/myprofile')
         
         #Delete post from products_posted
-        cmd = 'DELETE FROM Products_Posted WHERE product_id = :pid1;
+        cmd = 'DELETE FROM Products_Posted WHERE product_id = :pid1';
         c = g.conn.execute(text(cmd), pid1 = pid);
         c.close()
         return redirect('/myprofile')

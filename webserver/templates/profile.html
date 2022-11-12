@@ -58,10 +58,7 @@
   transition: 0.25s;
   display: block;
   width: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0px;
-  margin-bottom: 10px;
+  margin: 10px auto;
   }
 
   .redbtn:hover {
@@ -229,10 +226,14 @@ p {
       <h1 style="font-size:18px;text-align:center;">Posts</h1>
       <div class="post_container">
         {% for post in posts %}
-        <div class="post">
-        <a href="openpost?pid={{post[1]}}">
-            
+            <div class="post">
+              <a href="openpost?pid={{post[1]}}">
               
+              {% if info[0][0] == user_id %}
+              <a href="deletepost?pid={{post[1]}}">
+              <button type="button" class="redbtn btn-primary btn-large btn-block">delete post</button>
+              </a>
+              {% endif %}
               
                 <p class="title">{{post[2]}}</p>
                 <div class="img_cont">
@@ -240,15 +241,9 @@ p {
                 </div>
                 <p>{{post[4]}}</p>
                 <p>Unfinished!</p>
+                </a>
+            </div>
             
-            
-              {% if info[0][0] == user_id %}
-              <a href="deletepost?pid={{post[1]}}">
-              <button type="button" class="redbtn btn-primary btn-large btn-block">delete post</button>
-              </a>
-              {% endif %}
-          </a>
-          </div>
         {% endfor %}
     </div>
           

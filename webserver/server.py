@@ -408,64 +408,90 @@ def create_new_post():
 def delete_post():
     args = request.args
     pid = args.get("pid")
-    #try:
+    try:
         #Find whose post it is, make sure this matches with session
-    cmd = 'SELECT user_email FROM Products_Posted WHERE product_id = :pid1';
-    c = g.conn.execute(text(cmd), pid1 = pid);
-    found_user = c.fetchall()
-    c.close()
-    if found_user[0][0] != session['email']:
-        return redirect('/myprofile')
+        cmd = 'SELECT user_email FROM Products_Posted WHERE product_id = :pid1';
+        c = g.conn.execute(text(cmd), pid1 = pid);
+        found_user = c.fetchall()
+        c.close()
+        if found_user[0][0] != session['email']:
+            return redirect('/myprofile')
 
-    #Delete post from products_posted
-    cmd = 'DELETE FROM Products_Posted WHERE product_id = :pid1';
-    c = g.conn.execute(text(cmd), pid1 = pid);
-    c.close()
-    return redirect('/myprofile')
-    #except:
-    #    return redirect('/myprofile')
+        #Delete post from products_posted
+        cmd = 'DELETE FROM Products_Posted WHERE product_id = :pid1';
+        c = g.conn.execute(text(cmd), pid1 = pid);
+        c.close()
+        return redirect('/myprofile')
+    except:
+        return redirect('/myprofile')
+    
+    
+##################### DELETE REVIEW #######
+    
+    
+
+@app.route('/deletereview', methods=['GET'])
+def delete_review():
+    args = request.args
+    rid = args.get("rid")
+    try:
+        #Find whose review it is, make sure this matches with session
+        cmd = 'SELECT reviewer_email, reviewed_email FROM Reviews WHERE review_id = :rid1';
+        c = g.conn.execute(text(cmd), rid1 = rid);
+        found_users = c.fetchall()
+        c.close()
+        if found_users[0][0] != session['email']:
+            return redirect('/myprofile')
+
+        #Delete review from person's page
+        cmd = 'DELETE FROM Reviews WHERE review_id = :rid1';
+        c = g.conn.execute(text(cmd), rid1 = rid);
+        c.close()
+        return redirect(url_for('.profile', uid=found_users[0][1]))
+    except:
+        return redirect('/myprofile')
+    
     
 
 ##################### FILTERING POSTS #######
 
 @app.route('/filteredposts', methods=['POST'])
 def filter_posts():
-    #try:
-    cmd = 'SELECT tag_id FROM Tags';
-    c = g.conn.execute(text(cmd));
-    tags = c.fetchall()
-    c.close()
+    try:
+        cmd = 'SELECT tag_id FROM Tags';
+        c = g.conn.execute(text(cmd));
+        tags = c.fetchall()
+        c.close()
 
-    my_tags = []
+        my_tags = []
 
-    for t in tags:
-        if (str(t[0])) in request.form:
-            my_tags.append(t[0])
-    if len(my_tags) == 0:
+        for t in tags:
+            if (str(t[0])) in request.form:
+                my_tags.append(t[0])
+        if len(my_tags) == 0:
+            return redirect('/posts')
+
+        values = '('
+        for mt in my_tags:
+            values = values + str(mt) + ','
+        values = values[0:len(values)-1]
+        values = values + ')'
+
+        #Get products
+        cmd = 'SELECT * FROM Products_Posted WHERE product_id IN ((SELECT product_id FROM Products_Posted) EXCEPT SELECT t2.product_id FROM ((SELECT product_id, tag_id FROM Products_Posted, (SELECT tag_id FROM Tags WHERE tag_id in '
+        cmd = cmd + values + ') AS t) EXCEPT (SELECT * FROM Tagged_Products)) as t2)';
+        c = g.conn.execute(text(cmd));
+        posts = c.fetchall()
+        c.close()
+
+        cmd = 'SELECT * FROM Tags';
+        cursor = g.conn.execute(text(cmd));
+        alltags = cursor.fetchall()
+        cursor.close()
+        context = dict(posts=posts, tags=alltags)
+        return render_template("posts.html", **context)
+    except:
         return redirect('/posts')
-
-    values = '('
-    for mt in my_tags:
-        values = values + str(mt) + ','
-    values = values[0:len(values)-1]
-    values = values + ')'
-
-    #Get products
-    cmd = 'SELECT * FROM Products_Posted WHERE product_id IN ((SELECT product_id FROM Products_Posted) EXCEPT SELECT t2.product_id FROM ((SELECT product_id, tag_id FROM Products_Posted, (SELECT tag_id FROM Tags WHERE tag_id in '
-    cmd = cmd + values + ') AS t) EXCEPT (SELECT * FROM Tagged_Products)) as t2)';
-    c = g.conn.execute(text(cmd));
-    posts = c.fetchall()
-    c.close()
-
-    cmd = 'SELECT * FROM Tags';
-    cursor = g.conn.execute(text(cmd));
-    alltags = cursor.fetchall()
-    cursor.close()
-    context = dict(posts=posts, tags=alltags)
-    return render_template("posts.html", **context)
-
-#    except:
- #       return redirect('/posts')
 
 
 

@@ -148,7 +148,7 @@ def do_admin_login():
 @app.route('/logout')
 def logout():
     session['logged_in'] = False
-    session.pop(email)
+    session.pop('email')
     return redirect('/')
 
 @app.route('/newaccount')

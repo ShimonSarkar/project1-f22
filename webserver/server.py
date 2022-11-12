@@ -449,7 +449,7 @@ def delete_review():
         c.close()
         return redirect(url_for('.profile', uid=found_users[0][1]))
     except:
-        return redirect('/myprofile')
+        return redirect('/')
     
     
 

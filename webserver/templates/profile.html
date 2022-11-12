@@ -224,7 +224,7 @@ p {
       
       <p style="margin-top:50px;"><br></p>
       <h1 style="font-size:18px;text-align:center;">Posts</h1>
-      <div class="post_container">
+      <div class="post_container" style="background:#ECF0F1;border-radius:20px">
         {% for post in posts %}
         <div class="outerpost" style="width:200px;margin:50px 25px;display:inline-block;">
         <a href="openpost?pid={{post[1]}}">
@@ -249,7 +249,7 @@ p {
           
       <p style="margin:10px;"><br></p>
       <h1 style="font-size:18px;text-align:center;">Reviews</h1>
-      <div class="review_container">
+      <div class="review_container" style="background:#ECF0F1;border-radius:20px">
         {% for review in reviews %}
         <div class="outerreview" style="width:570px;">
           <a href="profile?uid={{review[4]}}">

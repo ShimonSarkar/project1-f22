@@ -124,7 +124,7 @@ def home():
         
 @app.route('/posts')
 def posts():
-    cmd = 'SELECT * FROM Products_Posted';
+    cmd = 'SELECT * FROM Products_Posted ORDER BY date DESC';
     cursor = g.conn.execute(text(cmd));
     posts = cursor.fetchall()
     cursor.close()

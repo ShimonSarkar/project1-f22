@@ -337,6 +337,27 @@ def follow():
         return redirect('/')
     
     
+@app.route('/selectcourse')
+def select_course():
+    args = request.args
+    cid = args.get("cid")
+    pid = args.get("pid")
+    try:
+        cmd = 'SELECT * FROM Products_Posted WHERE p.product_id IN (SELECT product_id FROM Product_Class_Relation as pcr WHERE professor_id = :pid1 and course_id = :cid1);
+        cursor = g.conn.execute(text(cmd), pid1 = pid, cid1 = cid);
+        posts = cursor.fetchall()
+        cursor.close()
+
+        cmd = 'SELECT * FROM Tags';
+        cursor = g.conn.execute(text(cmd));
+        tags = cursor.fetchall()
+        cursor.close()
+        context = dict(posts=posts, tags=tags)
+        return render_template("posts.html", **context)
+    except:
+        return redirect('/')
+    
+    
 
 ############ ADD POST #############
 

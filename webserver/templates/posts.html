@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/static/mainstyle.css" type="text/css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-        
+
         body {
             padding: 0;
             margin: 0;
@@ -63,79 +63,88 @@
 
 <body>
 
-<ul style="z-index: 100; position:fixed; top:0; width: 100%; box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.6);">
-    <li><a  class="active" href="/">posts</a></li>
-    <li style="float:right"><a href="logout">logout</a></li>
-    <li style="float:right"><a href="myprofile">my profile</a></li>
-    <li style="float:right"><a href="mymessages">messages</a></li>
-    <li style="float:right"><a href="newpost">new post</a></li>
-  </ul>
-    <div style="height: 90px; background-color: transparent;"></div>  
+    <ul style="z-index: 100; position:fixed; top:0; width: 100%; box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.6);">
+        <li><a class="active" href="/">posts</a></li>
+        <li style="float:right"><a href="logout">logout</a></li>
+        <li style="float:right"><a href="myprofile">my profile</a></li>
+        <li style="float:right"><a href="mymessages">messages</a></li>
+        <li style="float:right"><a href="newpost">new post</a></li>
+    </ul>
+    <div style="height: 90px; background-color: transparent;"></div>
 
-<h1 style="position:relative;bottom:35px;margin-inline-start:30px;">Products</h1>
+    <h1 style="position:relative;bottom:35px;margin-inline-start:30px;">Products</h1>
 
-<div style="margin: auto">
-<div class="column" style="width:300px;display:inline-block;vertical-align:top;margin:25px;position:relative;bottom:50px">
+    <div style="margin: auto">
+        <div>
+            <div class="column"
+                style="width:300px;display:inline-block;vertical-align:top;margin:25px;position:relative;bottom:50px">
 
-<div class="login">
-    <div class="login-screen" style="width:300px">
-    
-        <div class="app-subtitle">
-        <h1 style="font-size:18px">View Courses</h1>
-        </div>
-        
-        
-        <a href="courses">
-        <button type="button" style="color:white;text-decoration:none" class="btn btn-primary btn-large btn-block">courses</button>
-        </a>
+                <div class="login">
+                    <div class="login-screen" style="width:300px">
 
-    </div>
-</div>
-    
-<form action="/filteredposts", method="POST">
-  <div class="login">
-    <div class="login-screen" style="width:300px">
-    
-        <div class="app-subtitle">
-        <h1 style="font-size:18px">Filter Posts</h1>
-        </div>
-    
-        {% for tag in tags %}
+                        <div class="app-subtitle">
+                            <h1 style="font-size:18px">View Courses</h1>
+                        </div>
 
-        <div class="control-group">
-        <input style="float:left;width:30px" type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}" value="on">
-        <label style="color:#{{tag[2]}}" for="{{tag[0]}}"> {{tag[1]}}</label><br>
-        </div>
 
-        {% endfor %}
-        
-        <input type="submit" style="color:white" value="filter" class="btn btn-primary btn-large btn-block">
-    
-    </div>
-  </div>
-</form>
-    
-    
-    
-    
-</div>
-    
-    
-    
-  <div class="column" style="width:850px;display:inline-block;vertical-align:top;margin:25px;position:relative;bottom:50px">
-    <div class="post_container">
-        {% for post in posts %}
-        <a href="openpost?pid={{post[1]}}">
-            <div class="post">
-                <div style="height: 95px; overflow: scroll;" ><p class="title">{{post[2]}}</p></div>
-                <div class="img_cont">
-                    <img src={{post[6]}}>
+                        <a href="courses">
+                            <button type="button" style="color:white;text-decoration:none"
+                                class="btn btn-primary btn-large btn-block">courses</button>
+                        </a>
+
+                    </div>
+                </div>
+
+                <form action="/filteredposts" , method="POST">
+                    <div class="login">
+                        <div class="login-screen" style="width:300px">
+
+                            <div class="app-subtitle">
+                                <h1 style="font-size:18px">Filter Posts</h1>
+                            </div>
+
+                            {% for tag in tags %}
+
+                            <div class="control-group">
+                                <input style="float:left;width:30px" type="checkbox" id="{{tag[0]}}" name="{{tag[0]}}"
+                                    value="on">
+                                <label style="color:#{{tag[2]}}" for="{{tag[0]}}"> {{tag[1]}}</label><br>
+                            </div>
+
+                            {% endfor %}
+
+                            <input type="submit" style="color:white" value="filter"
+                                class="btn btn-primary btn-large btn-block">
+
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+            </div>
+
+
+
+            <div class="column"
+                style="width:850px;display:inline-block;vertical-align:top;margin:25px;position:relative;bottom:50px">
+                <div class="post_container">
+                    {% for post in posts %}
+                    <a href="openpost?pid={{post[1]}}">
+                        <div class="post">
+                            <div style="height: 95px; overflow: scroll;">
+                                <p class="title">{{post[2]}}</p>
+                            </div>
+                            <div class="img_cont">
+                                <img src={{post[6]}}>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
                 </div>
             </div>
-            </a>
-        {% endfor %}
-    </div>
-  </div>
+        </div>
     </div>
 </body>
 

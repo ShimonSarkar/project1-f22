@@ -74,6 +74,7 @@
 
 <h1 style="position:relative;bottom:35px;margin-inline-start:30px;">Products</h1>
 
+<div style="margin: auto">
 <div class="column" style="width:300px;display:inline-block;vertical-align:top;margin:25px;position:relative;bottom:50px">
 
 <div class="login">
@@ -121,7 +122,7 @@
     
     
     
-  <div class="column" style="width:950px;display:inline-block;vertical-align:top;margin:25px;position:relative;bottom:50px">
+  <div class="column" style="width:850px;display:inline-block;vertical-align:top;margin:25px;position:relative;bottom:50px">
     <div class="post_container">
         {% for post in posts %}
         <a href="openpost?pid={{post[1]}}">
@@ -135,6 +136,7 @@
         {% endfor %}
     </div>
   </div>
+    </div>
 </body>
 
 </html>

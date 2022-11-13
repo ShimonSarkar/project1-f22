@@ -7,7 +7,7 @@ outline: none;
 }
 body {
 font-family: Arial;
-background-color: #ECF0F1;
+background-color: #FFF;
 padding-top: 100px;
 padding-right: 50px;
 padding-bottom: 50px;
@@ -18,7 +18,7 @@ margin: 20px auto;
 width:1200px
 }
 .login-screen {
-background-color: #FFF;
+background-color: #ECF0F1;
 padding: 20px;
 border-radius: 5px
 }
@@ -43,7 +43,7 @@ margin-bottom: 10px;
 
 input {
 text-align: center;
-background-color: #ECF0F1;
+background-color: #FFF;
 border: 2px solid transparent;
 border-radius: 3px;
 font-size: 16px;
@@ -61,7 +61,7 @@ box-shadow: none;
 .btn {
 border: 2px solid transparent;
 background: #3498DB;
-color: #777;
+color: white;
 font-size: 16px;
 line-height: 25px;
 padding: 10px 0;

@@ -7,7 +7,7 @@ outline: none;
 }
 body {
 font-family: Arial;
-background-color: #FFF;
+background-color: #ECF0F1;
 padding-top: 100px;
 padding-right: 50px;
 padding-bottom: 50px;
@@ -15,7 +15,6 @@ padding-left: 50px;
 }
 .login {
 margin: 20px auto;
-width: 1200px;
 }
 .login-screen {
 background-color: #FFF;

@@ -64,9 +64,11 @@
             bottom: 0;
             width: 100%;
             box-sizing: border-box;
+            text-align: center;
         }
 
-        .msg_owner button {
+        .msg_owner .button {
+            display: block;
             width: 100%;
             padding: 20px;
             box-sizing: border-box;
@@ -77,9 +79,10 @@
             font-size: 17px;
             color: white;
             transition: .15s;
+            text-decoration: none;
         }
 
-        .msg_owner button:hover {
+        .msg_owner .button:hover {
             background-color: #1086FC;
             transition: .15s;
         }
@@ -93,14 +96,12 @@
 
 <body>
     <div class="msg_owner">
-        <button href="profile?uid={{user_email}}">Message Seller</button>
+        <a class="button" href="profile?uid={{user_email}}">Message Seller</a>
     </div>
     <div class="box_container">
         <div class="title">{{title}}</div>
         <div class="img_cont">
-            <img class="prod_pic"
-                src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRf-nOsRpV2sXAz5kVBgKL9blyR_zYbNoSgv8TfqF63RUvFYf8If1CUUUuTY4pZOis7M86xUlWqpBsfrktsQAJ0Pty-to-ULa4X5ERW_x11&usqp=CAE"
-                alt="">
+            <img class="prod_pic" src="{{image_url}}" alt="">
         </div>
         <div class="details"><b>Tags:</b>
             {% for tag in tags %}
@@ -116,10 +117,10 @@
         <div class="details"><b>Description:</b> {{description}}</div>
         <div class="details" style="padding-bottom: 30px;"><a href="profile?uid={{user_email}}"><b>Seller:</b>
                 {{user_email}}</a></div>
-        <div class="seller_reviews">
+        <div class="seller_reviews" style="background-color: #ECF0F1; padding: 30px; border-radius: 20px;">
             <div class="review_heading">Reviews</div>
             {% for review in reviews %}
-            <div class="review_cont">
+            <div class="review_cont" style="background-color: white;">
                 <div class="review_title" style="font-size: 20px;">{{review[1]}}</div>
                 <hr>
                 <div class="review_rating" style="padding-bottom: 5px;">Rating: {{review[3]}}/5</div>

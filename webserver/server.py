@@ -325,7 +325,7 @@ def unfollow():
 
 
 @app.route('/courses')
-def follow():
+def course():
     try:
         cmd = 'SELECT * FROM Class_Sections';
         c = g.conn.execute(text(cmd));

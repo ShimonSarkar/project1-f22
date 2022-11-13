@@ -140,7 +140,7 @@ p {
   
  
     <ul style="z-index: 100; position:fixed; top:0; width: 100%; box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.6);">
-        <li><a class="active" href="/">posts</a></li>
+        <li><a href="/">posts</a></li>
         <li style="float:right"><a href="logout">logout</a></li>
         <li style="float:right"><a href="myprofile">my profile</a></li>
         <li style="float:right"><a href="mymessages">messages</a></li>
@@ -238,17 +238,16 @@ p {
       <div class="post_container" style="background:#ECF0F1;border-radius:20px">
         {% for post in posts %}
         <div class="outerpost" style="width:200px;margin:20px 40px;display:inline-block;">
-        <a href="openpost?pid={{post[1]}}">
-            <div class="post">
-              
-                <p class="title">{{post[2]}}</p>
-                <div class="img_cont">
-                    <img src={{post[6]}}>
-                </div>
-                <p>{{post[4]}}</p>
-                <p>Unfinished!</p>
-            </div>
-            </a>
+            <a href="openpost?pid={{post[1]}}">
+                        <div class="post">
+                            <div style="height: 95px; overflow: scroll;">
+                                <p class="title">{{post[2]}}</p>
+                            </div>
+                            <div class="img_cont">
+                                <img src={{post[6]}}>
+                            </div>
+                        </div>
+                    </a>
             {% if info[0][0] == user_id %}
             <a href="deletepost?pid={{post[1]}}">
             <button type="button" class="redbtn btn-primary btn-large btn-block">delete post</button>

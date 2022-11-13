@@ -343,7 +343,7 @@ def select_course():
     cid = args.get("cid")
     pid = args.get("pid")
     #try:
-    cmd = 'SELECT * FROM Products_Posted WHERE p.product_id IN (SELECT product_id FROM Product_Class_Relation as pcr WHERE professor_id = :pid1 and course_id = :cid1';
+    cmd = 'SELECT * FROM Products_Posted WHERE p.product_id IN (SELECT product_id FROM Product_Class_Relation as pcr WHERE professor_id = :pid1 and course_id = :cid1)';
     cursor = g.conn.execute(text(cmd), pid1 = pid, cid1 = cid);
     posts = cursor.fetchall()
     cursor.close()

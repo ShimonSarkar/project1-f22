@@ -284,7 +284,7 @@ def createnewmessage():
     c = g.conn.execute(text(cmd), id = max_prod[0][0] + 1, content = message_content, date_created = date.today(), time_created = current_time, sender_email = session['email'], receiver_email = receiver, referred_product = None)
     return redirect(url_for('.message', uid=receiver))
     
-@app.route('mymessages')
+@app.route('/mymessages')
 def mymessages():
     cmd = 'SELECT * FROM Users WHERE Users.email IN (SELECT receiver_email FROM Messages_Sent_Received WHERE sender_email = (:email) UNION SELECT sender_email FROM Messages_Sent_Received WHERE receiver_email = (:email))'
     c = g.conn.execute(text(cmd), email = session['email'])

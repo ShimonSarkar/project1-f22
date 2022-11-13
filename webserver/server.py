@@ -202,7 +202,7 @@ def openpost():
     cursor = g.conn.execute(text(cmd), email1 = products[0][0])
     reviews = cursor.fetchall();
     
-    context = dict(reviews = reviews, tags = tags, user_email = products[0][0], product_id = products[0][1], title = products[0][2], description = products[0][3], posted_date = products[0][4], product_type = products[0][5], image_url = products[0][6], tutoring_hourly_rate = products[0][7], tutoring_schedule = products[0][8], study_resource_price = products[0][9], study_resource_download_url = products[0][10])
+    context = dict(viewer = session['email'], reviews = reviews, tags = tags, user_email = products[0][0], product_id = products[0][1], title = products[0][2], description = products[0][3], posted_date = products[0][4], product_type = products[0][5], image_url = products[0][6], tutoring_hourly_rate = products[0][7], tutoring_schedule = products[0][8], study_resource_price = products[0][9], study_resource_download_url = products[0][10])
     return render_template("post.html", **context)
 
 ########### PROFILE ############
@@ -261,10 +261,11 @@ def profile():
 def message():
     args = request.args
     uid = args.get("uid")
+    pholder = args.get("pholder")
     cmd = 'SELECT * FROM Messages_Sent_Received WHERE sender_email = (:sender1) AND receiver_email = (:sender2) OR sender_email = (:sender2) AND receiver_email = (:sender1) ORDER BY date_created, time_created';
     c = g.conn.execute(text(cmd), sender1 = session['email'], sender2 = uid);
     messages = c.fetchall()
-    context = dict(useremail=session['email'], messages=messages, receiveremail = uid)
+    context = dict(useremail=session['email'], messages=messages, receiveremail = uid, pholder = pholder)
     return render_template("messages.html", **context)
 
 @app.route('/createnewmessage', methods = ['POST'])
@@ -282,7 +283,7 @@ def createnewmessage():
         
     cmd = 'INSERT INTO Messages_Sent_Received VALUES (:id, :content, :date_created, :time_created, :sender_email, :receiver_email, :referred_product)'
     c = g.conn.execute(text(cmd), id = max_prod[0][0] + 1, content = message_content, date_created = date.today(), time_created = current_time, sender_email = session['email'], receiver_email = receiver, referred_product = None)
-    return redirect(url_for('.message', uid=receiver))
+    return redirect(url_for('.message', uid=receiver, pholder=''))
     
 @app.route('/mymessages')
 def mymessages():

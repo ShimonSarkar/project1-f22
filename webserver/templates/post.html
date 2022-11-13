@@ -103,9 +103,11 @@
         <li style="float:right"><a href="newpost">new post</a></li>
     </ul>
     <div style="height: 90px; background-color: transparent;"></div>
+    {% if user_email != viewer %}
     <div class="msg_owner">
-        <a class="button" href="message?uid={{user_email}}">Message Seller</a>
+        <a class="button" href="message?uid={{user_email}}&pholder={{title}}">Message Seller</a>
     </div>
+    {% endif %}
     <div class="box_container">
         <div class="title">{{title}}</div>
         <div class="img_cont">

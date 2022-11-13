@@ -320,6 +320,23 @@ def unfollow():
     except:
         return redirect(url_for('.profile', uid=uid))
 
+    
+############## SEE ALL COURSES ######
+
+
+@app.route('/courses')
+def follow():
+    try:
+        cmd = 'SELECT * FROM Class_Sections';
+        c = g.conn.execute(text(cmd));
+        courses = c.fetchall()
+        c.close()
+        context = dict(courses=courses)
+        return render_template("courses.html", **context)
+    except:
+        return redirect('/')
+    
+    
 
 ############ ADD POST #############
 

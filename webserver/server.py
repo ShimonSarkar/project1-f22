@@ -262,6 +262,8 @@ def message():
     args = request.args
     uid = args.get("uid")
     pholder = args.get("pholder")
+    if pholder != '':
+        pholder = "Hi, I would like to ask about the following product" + pholder
     cmd = 'SELECT * FROM Messages_Sent_Received WHERE sender_email = (:sender1) AND receiver_email = (:sender2) OR sender_email = (:sender2) AND receiver_email = (:sender1) ORDER BY date_created, time_created';
     c = g.conn.execute(text(cmd), sender1 = session['email'], sender2 = uid);
     messages = c.fetchall()

@@ -81,6 +81,19 @@
 </head>
 
 <body>
+    
+    <ul style="z-index: 100; position:fixed; top:0; width: 100%; box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.6);">
+        <li><a class="active" href="/">posts</a></li>
+        <li style="float:right"><a href="logout">logout</a></li>
+        <li style="float:right"><a href="myprofile">my profile</a></li>
+        <li style="float:right"><a href="mymessages">messages</a></li>
+        <li style="float:right"><a href="newpost">new post</a></li>
+    </ul>
+    <div style="height: 90px; background-color: transparent;"></div>
+
+    
+    
+    
     <div class="box_container">
         {% for person in people %}
         <div class="message_box">

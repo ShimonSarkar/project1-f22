@@ -38,7 +38,8 @@
         }
 
         img {
-            width: 100%;
+            width: 152px;
+            height: 152px;
             border-radius: 10px;
         }
 
@@ -118,12 +119,10 @@
         {% for post in posts %}
         <a href="openpost?pid={{post[1]}}">
             <div class="post">
-                <p class="title">{{post[2]}}</p>
+                <div style="height: 70px; overflow: scroll;" ><p class="title">{{post[2]}}</p></div>
                 <div class="img_cont">
                     <img src={{post[6]}}>
                 </div>
-                <p>{{post[4]}}</p>
-                <p>Unfinished!</p>
             </div>
             </a>
         {% endfor %}

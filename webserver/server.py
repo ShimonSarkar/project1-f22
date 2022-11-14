@@ -57,7 +57,7 @@ engine.execute("""CREATE TABLE IF NOT EXISTS test (
   id serial,
   name text
 );""")
-engine.execute("""INSERT INTO test(name) VALUES ('grace hopper'), ('alan turing'), ('ada lovelace');""")
+engine.execute("""test(name) VALUES ('grace hopper'), ('alan turing'), ('ada lovelace');""")
 
 
 
@@ -288,7 +288,7 @@ def createnewmessage():
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
         
-    cmd = 'INSERT INTO Messages_Sent_Received VALUES (:id, :content, :date_created, :time_created, :sender_email, :receiver_email, :referred_product)'
+    cmd = 'INSERT INTO Messages_Sent_Received VALUES (:id, :content, :date_created, :time_created, :sender_email, :receiver_email)'
     c = g.conn.execute(text(cmd), id = max_prod[0][0] + 1, content = message_content, date_created = date.today(), time_created = current_time, sender_email = session['email'], receiver_email = receiver, referred_product = None)
     c.close()
     return redirect(url_for('.message', uid=receiver, pholder=''))

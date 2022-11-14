@@ -148,6 +148,7 @@ def do_admin_login():
         session['email'] = email
     else:
         flash('Invalid login credentials!')
+    cursor.close()
     return redirect('/')
 
 @app.route('/logout')
@@ -193,14 +194,17 @@ def openpost():
     cmd = 'SELECT * FROM Products_Posted WHERE product_id = (:pid1)';
     cursor = g.conn.execute(text(cmd), pid1 = pid);
     products = cursor.fetchall()
+    cursor.close()
     
     cmd = 'SELECT * FROM Tags WHERE tag_id in (SELECT tag_id FROM Tagged_Products WHERE product_id = (:pid1))';
     cursor = g.conn.execute(text(cmd), pid1 = pid);
     tags = cursor.fetchall();
+    cursor.close()
     
     cmd = 'SELECT * FROM Reviews WHERE reviewed_email = (:email1)';
     cursor = g.conn.execute(text(cmd), email1 = products[0][0])
     reviews = cursor.fetchall();
+    cursor.close()
     
     context = dict(viewer = session['email'], reviews = reviews, tags = tags, user_email = products[0][0], product_id = products[0][1], title = products[0][2], description = products[0][3], posted_date = products[0][4], product_type = products[0][5], image_url = products[0][6], tutoring_hourly_rate = products[0][7], tutoring_schedule = products[0][8], study_resource_price = products[0][9], study_resource_download_url = products[0][10])
     return render_template("post.html", **context)
@@ -268,6 +272,7 @@ def message():
     c = g.conn.execute(text(cmd), sender1 = session['email'], sender2 = uid);
     messages = c.fetchall()
     context = dict(useremail=session['email'], messages=messages, receiveremail = uid, pholder = pholder)
+    c.close()
     return render_template("messages.html", **context)
 
 @app.route('/createnewmessage', methods = ['POST'])
@@ -285,6 +290,7 @@ def createnewmessage():
         
     cmd = 'INSERT INTO Messages_Sent_Received VALUES (:id, :content, :date_created, :time_created, :sender_email, :receiver_email, :referred_product)'
     c = g.conn.execute(text(cmd), id = max_prod[0][0] + 1, content = message_content, date_created = date.today(), time_created = current_time, sender_email = session['email'], receiver_email = receiver, referred_product = None)
+    c.close()
     return redirect(url_for('.message', uid=receiver, pholder=''))
     
 @app.route('/mymessages')
@@ -293,6 +299,7 @@ def mymessages():
     c = g.conn.execute(text(cmd), email = session['email'])
     people = c.fetchall();
     context = dict(people=people)
+    c.close()
     return render_template("allmessages.html", **context)
     
 ############## FOLLOW BUTTON ######
@@ -672,7 +679,8 @@ def add():
   name = request.form['name']
   print(name)
   cmd = 'INSERT INTO test(name) VALUES (:name1)';
-  g.conn.execute(text(cmd), name1 = name);
+  c = g.conn.execute(text(cmd), name1 = name);
+  c.close()
   return redirect('/')
 
 
